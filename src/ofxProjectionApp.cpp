@@ -32,6 +32,7 @@ void ofxProjectionApp::setup(ofFbo * _canvasRef, bool _loadFromFile, string _dir
     appSize = _appSize;
     scaleDenominator = _scaleDenominator;
     
+    
     /*
      Set up listeners
      */
@@ -131,7 +132,20 @@ void ofxProjectionApp::setupWarps()
     //Debug purposes
     debugImg.load("testcard.png");
     
-    setupCropData();
+    setupCropJsonData();
+    
+    setupCroppingManager(); 
+}
+
+void ofxProjectionApp::setupCroppingManager()
+{
+    /*
+     Cropping Manager
+     */
+    cropMan = new CroppingManager()
+    cropMan->setup(appSize*guiMan->getCropSize(), ofVec2f(0,0), warpController->getNumWarps(), canvasRef);
+    cropMan->setVisible(false);
+    scene->addChild(cropMan);
 }
 
 void ofxProjectionApp::setupEdges()
@@ -196,7 +210,7 @@ void ofxProjectionApp::draw()
             //ofSetColor(ofColor::red);
             //ofDrawRectangle(bounds.x, bounds.y, bounds.width, bounds.height);
             
-            if( i < Global::one().cropData.size() )
+            if( i < cropMan->getCropDataSize() )
             {
                 //(<#float x#>, <#float y#>, <#float w#>, <#float h#>, <#float sx#>, <#float sy#>, <#float sw#>, <#float sh#>)
                 
@@ -205,10 +219,10 @@ void ofxProjectionApp::draw()
                     
                     canvasRef->getTexture().drawSubsection(bounds.x, bounds.y,
                                                            bounds.width, bounds.height,
-                                                           Global::one().cropData[i].pos.x,
-                                                           Global::one().cropData[i].pos.y,
-                                                           Global::one().cropData[i].size.x,
-                                                           Global::one().cropData[i].size.y);
+                                                           cropMan->getCropData(i).pos.x,
+                                                           cropMan->getCropData(i).pos.y,
+                                                           cropMan->getCropData(i).size.x,
+                                                           cropMan->getCropData(i).size.y);
                 }
                 else
                 {
@@ -259,10 +273,10 @@ void ofxProjectionApp::setGuiState(GUIStates _guiState)
 }
 
 #pragma mark CROP DATA
-void ofxProjectionApp::setupCropData()
+void ofxProjectionApp::setupCropJsonData()
 {
     
-    for(int i = 0; i < Global::one().cropData.size(); i++)
+    for(int i = 0; i < cropMan->getCropDataSize(); i++)
     {
         ofxJSONElement data;
         data["warpID"] = ofxJSONElement();
@@ -276,9 +290,9 @@ void ofxProjectionApp::setupCropData()
     
 }
 
-void ofxProjectionApp::clearCropData()
+void ofxProjectionApp::clearCropJsonData()
 {
-    for(int i = 0; i < Global::one().cropData.size(); i++)
+    for(int i = 0; i < cropMan->getCropDataSize(); i++)
     {
         cropData[i]["warpID"] = "";
         cropData[i]["width"] = "";
@@ -288,17 +302,17 @@ void ofxProjectionApp::clearCropData()
     }
 }
 
-void ofxProjectionApp::saveCropData(string fileName)
+void ofxProjectionApp::saveCropJsonData(string fileName)
 {
     
     
-    for(int i = 0; i < Global::one().cropData.size(); i++)
+    for(int i = 0; i < cropMan->getCropDataSize(); i++)
     {
-        cropData[i]["warpID"] = Global::one().cropData[i].index;
-        cropData[i]["width"] = Global::one().cropData[i].size.x;
-        cropData[i]["height"] = Global::one().cropData[i].size.y;
-        cropData[i]["xPos"] = Global::one().cropData[i].pos.x;
-        cropData[i]["yPos"] = Global::one().cropData[i].pos.y;
+        cropData[i]["warpID"] = cropMan->getCropData(i).index;
+        cropData[i]["width"] = cropMan->getCropData(i).size.x;
+        cropData[i]["height"] = cropMan->getCropData(i).size.y;
+        cropData[i]["xPos"] = cropMan->getCropData(i).pos.x;
+        cropData[i]["yPos"] = cropMan->getCropData(i).pos.y;
     }
     
     ofLogNotice() << "Saving " << cropData.getRawString();
@@ -322,7 +336,7 @@ void ofxProjectionApp::onSaveSettings(ofxNotificationCenter::Notification & n)
     //! Save crop settings
     string cropPath = ofFilePath::join(directory, cropCropFileName);
     //string cropPath = ofFilePath::join(Global::one().projectionDirectory, cropDataFileName);
-    saveCropData(cropPath);
+    saveCropJsonData(cropPath);
     cropPath = path;
     ofLogNotice("ofxProjectionApp::onSaveSettings") << "Saving current projection settings at " << path;
 }
@@ -434,19 +448,21 @@ void ofxProjectionApp::loadNewSettings()
         {
             for(int i = 0; i < newCropData.size(); i++)
             {
-                if(newCropData.size() == Global::one().cropData.size())
+                if(newCropData.size() == cropMan->getCropDataSize())
                 {
+                    CroppingManager::CropInfo temp;
                     
-                    Global::one().cropData[i].index = newCropData[i]["warpID"].asInt();
-                    Global::one().cropData[i].size.x = newCropData[i]["width"].asFloat() ;
-                    Global::one().cropData[i].size.y = newCropData[i]["height"].asFloat();
-                    Global::one().cropData[i].pos.x = newCropData[i]["xPos"].asFloat();
-                    Global::one().cropData[i].pos.y = newCropData[i]["yPos"].asFloat();
+                    temp.index = newCropData[i]["warpID"].asInt();
+                    temp.size.x = newCropData[i]["width"].asFloat() ;
+                    temp.size.y = newCropData[i]["height"].asFloat();
+                    temp.pos.x = newCropData[i]["xPos"].asFloat();
+                    temp.pos.y = newCropData[i]["yPos"].asFloat();
                     
+                    cropMan->updateCropData(temp, i);
                 }
                 else
                 {
-                    ofLogError("ofxProjectionApp::loadNewSettings") << cropPath << " does not have the same amount of objects as Global::one().cropData";
+                    ofLogError("ofxProjectionApp::loadNewSettings") << cropPath << " does not have the same amount of objects as cropMan->getCropDataSize():  " << cropMan->getCropDataSize();
                 }
             }
             

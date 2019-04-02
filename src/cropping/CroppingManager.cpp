@@ -54,11 +54,11 @@ void CroppingManager::setup(ofVec2f size, ofVec2f pos, int numCrops, ofFbo *_can
         warps.push_back(temp);
         
         //Create a global crop object
-        App::CropInfo data;
+        CropInfo data;
         data.size.set(canvasSize.x/numCrops, canvasSize.y);
         data.pos.set(0.0f, 0.0f);
         data.index = i;
-        Global::one().cropData.push_back(data);
+        cropData.push_back(data);
         
         counter++;
     }
@@ -94,7 +94,10 @@ void CroppingManager::setup(ofVec2f size, ofVec2f pos, int numCrops, ofFbo *_can
 
 void CroppingManager::update(float dt)
 {
-    
+    // Update visual warp data
+    for(int i = 0; i < warps.size(); i++){
+        warps[i]->updateCropData(cropData[i].pos, cropData[i].size); 
+    }
 }
 
 void CroppingManager::draw()
@@ -126,11 +129,6 @@ void CroppingManager::draw()
         ofFill();
         ofDrawRectangle(scaledProjectors[i].pos.x, scaledProjectors[i].pos.y,
                         scaledProjectors[i].size.x, scaledProjectors[i].size.y);
-    }
-    
-    // Update visual warp data
-    for(int i = 0; i < warps.size(); i++){
-        
     }
     
     
@@ -212,8 +210,8 @@ void CroppingManager::calculateBoundingBoxAttributes(int warpIndex)
     cropBoundingBox->setVisible(true);
     
     //! Update GUI values
-    ofVec2f newCropSize = Global::one().cropData[warpIndex].size / canvasSize;
-    ofVec2f newCropPos = Global::one().cropData[warpIndex].pos / canvasSize;
+    ofVec2f newCropSize = cropData[warpIndex].size / canvasSize;
+    ofVec2f newCropPos = cropData[warpIndex].pos / canvasSize;
     
     
     ofxNotificationCenter::Notification mnd;
@@ -223,7 +221,7 @@ void CroppingManager::calculateBoundingBoxAttributes(int warpIndex)
     mnd.data["xPos"] = newCropPos.x;
     mnd.data["yPos"] = newCropPos.y;
     
-    ofxNotificationCenter::one().postNotification(Global::one().IDManager, mnd);
+    ofxNotificationCenter::one().postNotification(IDManager::one().crop_startInfo_id, mnd);
     
     
     //! Update crop visual bounding box
@@ -274,7 +272,7 @@ void CroppingManager::onUpdateWidth(ofxNotificationCenter::Notification& n)
     
     //Update global crop data
     float newCropData = width_normalized * canvasSize.x;
-    Global::one().cropData[activeIndex].size.x = newCropData;
+    cropData[activeIndex].size.x = newCropData;
     
     ofLogNotice("CroppingManager::onUpdateWidth") << "Update warp width to " << newCropData;
     
@@ -291,7 +289,7 @@ void CroppingManager::onUpdateHeight(ofxNotificationCenter::Notification& n)
     
     //Update global crop data
     float newCropData = height_normalized * canvasSize.y;
-    Global::one().cropData[activeIndex].size.y = newCropData;
+    cropData[activeIndex].size.y = newCropData;
     
     ofLogNotice("CroppingManager::onUpdateHeight") << "Update warp width to " << newCropData;
     
@@ -303,7 +301,7 @@ void CroppingManager::onUpdateXpos(ofxNotificationCenter::Notification&n)
 {
     float xPos_normalized = n.data["cropXpos"];
     float newXpos = xPos_normalized * canvasSize.x;
-    Global::one().cropData[activeIndex].pos.x = newXpos;
+    cropData[activeIndex].pos.x = newXpos;
     
     ofLogNotice("CroppingManager::onUpdateXpos") << "Update warp xPos to " << newXpos;
     
@@ -317,7 +315,7 @@ void CroppingManager::onUpdateYpos(ofxNotificationCenter::Notification&n)
 {
     float yPos_normalized = n.data["cropYpos"];
     float newYpos = yPos_normalized * canvasSize.x;
-    Global::one().cropData[activeIndex].pos.y = newYpos;
+    cropData[activeIndex].pos.y = newYpos;
     
     ofLogNotice("CroppingManager::onUpdateYpos") << "Update warp yPos to " << newYpos;
     // Update crop visual position
@@ -327,8 +325,8 @@ void CroppingManager::onUpdateYpos(ofxNotificationCenter::Notification&n)
 
 void CroppingManager::onUpdateInterface(ofxNotificationCenter::Notification&n)
 {
-    ofVec2f posNoramlized = Global::one().cropData[activeIndex].pos / canvasSize;
-    ofVec2f sizeNormalized = Global::one().cropData[activeIndex].size / canvasSize;
+    ofVec2f posNoramlized = cropData[activeIndex].pos / canvasSize;
+    ofVec2f sizeNormalized = cropData[activeIndex].size / canvasSize;
     
     ofLogNotice("CroppingManager::onUpdateInterface") << "Update crop visual data to posNoramlized: " << posNoramlized << " and sizeNormalized: " << sizeNormalized;
     // Update crop visual position
@@ -387,4 +385,24 @@ void CroppingManager::onTouchMove(ofxInterface::TouchEvent& event)
         setPosition(newPos);
         prevPos = event.position;
     }
+}
+
+#pragma mark CROP INFO
+
+CropInfo CroppingManager::getCropData(int cropIndex)
+{
+    if(cropIndex < cropData.size())
+    {
+        return cropData[cropIndex];
+    }
+}
+
+int CroppingManager::getCropDataSize()
+{
+    return cropData.size(); 
+}
+
+void CroppingManager::updateCropData(CropInfo data, int CropIndex)
+{
+    cropData[CropIndex] = data;
 }

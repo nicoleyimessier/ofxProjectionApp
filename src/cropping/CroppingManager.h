@@ -14,6 +14,8 @@
 #include "WarpVisual.h"
 #include "IDManager.h"
 
+
+
 class CroppingManager : public ofxInterface::Node
 {
 public:
@@ -44,6 +46,24 @@ public:
     void onUpdateXpos(ofxNotificationCenter::Notification& n);
     void onUpdateYpos(ofxNotificationCenter::Notification& n);
     void onUpdateInterface(ofxNotificationCenter::Notification& n);
+    
+    /*
+     Crop Data
+     */
+    struct CropInfo
+    {
+        ofVec2f pos = ofVec2f(0.0f, 0.0f);
+        ofVec2f size = ofVec2f(100.0f, 100.0f);
+        int index = 0;
+    };
+    
+    vector<CropInfo> cropData;
+    
+public:
+    
+    CropInfo getCropData(int cropIndex);
+    void updateCropData(CropInfo data, int CropIndex);
+    int getCropDataSize();
     
 private:
     /*
@@ -101,7 +121,7 @@ private:
     void calculateBoundingBoxAttributes(int warpIndex);
     
     /*
-     
+     CropData
      */
 
 };

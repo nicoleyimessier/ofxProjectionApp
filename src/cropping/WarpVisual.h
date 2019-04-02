@@ -40,6 +40,11 @@ public:
      */
     void setActive(bool _active);
     
+    /*
+     Canvas Reference / crop info
+     */
+    void updateCropData(ofVec2f _cropPos, ofVec2f _cropSize);
+    
 private:
     
     /*
@@ -50,9 +55,10 @@ private:
     
     
     /*
-     Canvas Reference
+     Canvas Reference / crop info
      */
     ofFbo *canvasRef;
-
+    ofVec2f cropPos = ofVec2f(0.0f, 0.0f);
+    ofVec2f cropSize = ofVec2f(0.0f, 0.0f);
     
 };

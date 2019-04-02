@@ -14,7 +14,7 @@
 #include "ofxInterface.h"
 #include "EdgeBlend.h"
 #include "ofxJson.h"
-
+#include "CroppingManager.h"
 
 class ofxProjectionApp
 {
@@ -24,6 +24,7 @@ public:
     
     void setup(ofFbo * _canvasRef, bool _loadFromFile, string _directoryPath = "", ofVec2f _appSize, float _scaleDenominator = 1.0f);
     void setupWarps();
+    void setupCroppingManager();
     void setupEdges();
     void update();
     void draw();
@@ -51,7 +52,7 @@ public:
     /*
      Cropping Manager
      */
-    
+    CroppingManager *cropMan;
     
 protected:
     /*
@@ -108,9 +109,9 @@ protected:
      Crop Data
      */
     ofxJSONElement cropData;
-    void setupCropData();
-    void clearCropData();
-    void saveCropData(string fileName);
+    void setupCropJsonData();
+    void clearCropJsonData();
+    void saveCropJsonData(string fileName);
     string cropCropFileName = "CROP_DATA.json";
     
     /*
