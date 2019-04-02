@@ -19,7 +19,7 @@ ofxProjectionApp::~ofxProjectionApp()
     
 }
 
-void ofxProjectionApp::setup(ofFbo * _canvasRef, bool _loadFromFile, string _directoryPath,  ofVec2f _appSize, float _scaleDenominator)
+void ofxProjectionApp::setup(ofFbo * _canvasRef, bool _loadFromFile,  ofVec2f _appSize, float _scaleDenominator, ofxInterface::Node* _sceneRef, string _directoryPath)
 {
     warpController = new ofxWarpController();
     
@@ -32,6 +32,7 @@ void ofxProjectionApp::setup(ofFbo * _canvasRef, bool _loadFromFile, string _dir
     appSize = _appSize;
     scaleDenominator = _scaleDenominator;
     
+    sceneRef = _sceneRef;
     
     /*
      Set up listeners
@@ -50,15 +51,16 @@ void ofxProjectionApp::setupWarps()
         glm::vec2 projectorOrigin = glm::vec2(0.0f, 0.0f);
     std:shared_ptr<ofxWarpBase> warp;
         
-        for(int i = 0; i < projectors.size(); i++)
+        for(int i = 0; i < ProjectorManager::one().projectors.size(); i++)
         {
-            projectorOrigin.x = projectors[i].size.x * i;
+            projectorOrigin.x = ProjectorManager::one().projectors[i]->size.x * i;
             
-            for(int j = 0; j < projectors[i].numWarps; j++)
+            for(int j = 0; j < ProjectorManager::one().projectors[i]->numWarps; j++)
             {
                 warp = warpController->buildWarp<ofxWarpBilinear>();
                 
-                warp->setSize(projectors[i].size.x/projectors[i].numWarps, projectors[i].size.y);
+                warp->setSize(ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps,
+                              ProjectorManager::one().projectors[i]->size.y);
                 
                 //Edges are the alphas?
                 warp->setEdges(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
@@ -75,11 +77,11 @@ void ofxProjectionApp::setupWarps()
                 // Top left control point
                 
                 
-                float xPos_l = projectorOrigin.x + (projectors[i].size.x/projectors[i].numWarps)*j;
+                float xPos_l = projectorOrigin.x + (ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps)*j;
                 xPos_l = xPos_l/appSize.x;
                 xPos_l = xPos_l/scaleDenominator;
                 
-                float xPos_r = projectorOrigin.x + (projectors[i].size.x/projectors[i].numWarps)*(j + 1);
+                float xPos_r = projectorOrigin.x + (ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps)*(j + 1);
                 xPos_r = xPos_r/appSize.x;
                 xPos_r = xPos_r/scaleDenominator;
                 
@@ -142,10 +144,10 @@ void ofxProjectionApp::setupCroppingManager()
     /*
      Cropping Manager
      */
-    cropMan = new CroppingManager()
+    cropMan = new CroppingManager();
     cropMan->setup(appSize*guiMan->getCropSize(), ofVec2f(0,0), warpController->getNumWarps(), canvasRef);
     cropMan->setVisible(false);
-    scene->addChild(cropMan);
+    sceneRef->addChild(cropMan);
 }
 
 void ofxProjectionApp::setupEdges()
@@ -163,6 +165,12 @@ void ofxProjectionApp::setupEdges()
         
         
     }
+}
+
+void ofxProjectionApp::setupGuiManager(vector<string> &appStates)
+{
+    guiMan = new MainGUI();
+    guiMan->setup(appStates, directoryPath);
 }
 
 void ofxProjectionApp::update()
@@ -242,12 +250,6 @@ void ofxProjectionApp::draw()
         
     }
     
-}
-
-#pragma mark PROJECTOR DATA
-void ofxProjectionApp::addProjector(App::Projector projector)
-{
-    projectors.push_back(projector);
 }
 
 #pragma mark GUI STATES
@@ -395,7 +397,7 @@ void ofxProjectionApp::onCloseEdgeBlendGui(ofxNotificationCenter::Notification& 
 void ofxProjectionApp::saveCurrentSettings()
 {
     warpController->saveSettings(warpPath);
-    saveCropData(cropPath);
+    saveCropJsonData(cropPath);
 }
 
 #pragma mark LOADING

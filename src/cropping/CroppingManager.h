@@ -13,7 +13,7 @@
 #include "Crop.h"
 #include "WarpVisual.h"
 #include "IDManager.h"
-
+#include "ProjectorManager.h"
 
 
 class CroppingManager : public ofxInterface::Node
@@ -23,6 +23,7 @@ public:
     ~CroppingManager();
     
     void setup(ofVec2f size, ofVec2f pos, int numCrops, ofFbo *_canvasRef);
+    void setupScaledProjectors(vector<Projector*> & projectors); 
     void update(float dt);
     void draw();
     
@@ -80,7 +81,7 @@ private:
     
     //! Scaled projector attributes
     ofVec2f projectorOrigin;
-    vector<App::Projector> scaledProjectors;
+    vector<Projector*> scaledProjectors;
     void caclulateProjectorAttributes();
     
     /*

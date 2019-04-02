@@ -15,6 +15,8 @@
 #include "EdgeBlend.h"
 #include "ofxJson.h"
 #include "CroppingManager.h"
+#include "ProjectorManager.h"
+#include "MainGUI.h"
 
 class ofxProjectionApp
 {
@@ -22,17 +24,16 @@ public:
     ofxProjectionApp();
     ~ofxProjectionApp();
     
-    void setup(ofFbo * _canvasRef, bool _loadFromFile, string _directoryPath = "", ofVec2f _appSize, float _scaleDenominator = 1.0f);
+    void setup(ofFbo * _canvasRef, bool _loadFromFile, ofVec2f _appSize, float _scaleDenominator, ofxInterface::Node* _sceneRef, string _directoryPath);
     void setupWarps();
     void setupCroppingManager();
+    void setupGuiManager(vector<string> &appStates);
     void setupEdges();
+    
+    
     void update();
     void draw();
-    
-    /*
-     Projector Data
-     */
-    void addProjector(App::Projector projector);
+
     
     /*
      State management of all the different GUIS
@@ -48,11 +49,8 @@ public:
      Saving
      */
     void saveCurrentSettings();
+
     
-    /*
-     Cropping Manager
-     */
-    CroppingManager *cropMan;
     
 protected:
     /*
@@ -76,7 +74,6 @@ protected:
     /*
      Projector Data
      */
-    vector<App::Projector> projectors;
     string warpDataFileName = "PROJECTION_SETTINGS";
     
     /*
@@ -132,5 +129,18 @@ protected:
     
     //!scaleDenominator this is for development purposes if you are developing locally at a smaller scale
     float scaleDenominator = 1.0f;
+    
+    /*
+     Cropping Manager
+     */
+    CroppingManager *cropMan;
+    
+    /*
+     GUIManager
+     */
+    
+    MainGUI * guiMan;
+    
+    ofxInterface::Node* sceneRef;
 };
 

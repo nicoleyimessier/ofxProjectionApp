@@ -32,16 +32,6 @@ void CroppingManager::setup(ofVec2f size, ofVec2f pos, int numCrops, ofFbo *_can
     //The number of crops is equal to the number of warps in the system
     calculateCanvasAttributes();
     
-    //Set up Scaled projectors
-    for(int i=0; i < AppSettings::one().projectors.size() ; i++)
-    {
-        App::Projector data;
-        data.order = AppSettings::one().projectors[i].order;
-        data.numWarps = AppSettings::one().projectors[i].numWarps;
-        scaledProjectors.push_back(data);
-    }
-    
-    caclulateProjectorAttributes();
     
     //Set up warps
     int counter = 0;
@@ -68,7 +58,7 @@ void CroppingManager::setup(ofVec2f size, ofVec2f pos, int numCrops, ofFbo *_can
     
     // Set up crop bounding box
     cropBoundingBox = new Crop();
-    cropBoundingBox->setup(canvasPos, ofVec2f(canvasSizeScaled.x/numCrops, canvasSizeScaled.y), canvasPos);
+    cropBoundingBox->setup(canvasPos, ofVec2f(canvasSizeScaled.x/numCrops, canvasSizeScaled.y), canvasPos, canvasSize);
     addChild(cropBoundingBox);
     cropBoundingBox->setVisible(false);
     cropBoundingBox->setPlane(10.0f); 
@@ -90,6 +80,19 @@ void CroppingManager::setup(ofVec2f size, ofVec2f pos, int numCrops, ofFbo *_can
 
     ofxNotificationCenter::one().addObserver(this, &CroppingManager::onUpdateInterface, IDManager::one().updateCropInterface_id);
     
+}
+
+void CroppingManager::setupScaledProjectors(vector<Projector*> & projectors)
+{
+    
+    //Set up Scaled projectors
+    for(int i=0; i < projectors.size() ; i++)
+    {
+        Projector * temp  = new Projector();
+        temp->setup(projectors[i]->order, projectors[i]->numWarps);
+    }
+    
+    caclulateProjectorAttributes();
 }
 
 void CroppingManager::update(float dt)
@@ -122,13 +125,13 @@ void CroppingManager::draw()
         ofSetColor(ofColor::green);
         ofSetLineWidth(10.0f);
         ofNoFill();
-        ofDrawRectangle(scaledProjectors[i].pos.x, scaledProjectors[i].pos.y,
-                        scaledProjectors[i].size.x, scaledProjectors[i].size.y);
+        ofDrawRectangle(scaledProjectors[i]->pos.x, scaledProjectors[i]->pos.y,
+                        scaledProjectors[i]->size.x, scaledProjectors[i]->size.y);
         
         ofSetColor(ofColor::black);
         ofFill();
-        ofDrawRectangle(scaledProjectors[i].pos.x, scaledProjectors[i].pos.y,
-                        scaledProjectors[i].size.x, scaledProjectors[i].size.y);
+        ofDrawRectangle(scaledProjectors[i]->pos.x, scaledProjectors[i]->pos.y,
+                        scaledProjectors[i]->size.x, scaledProjectors[i]->size.y);
     }
     
     
@@ -167,14 +170,14 @@ void CroppingManager::caclulateProjectorAttributes()
 
     for(int i = 0; i < scaledProjectors.size(); i++)
     {
-        ofVec2f projectorSize = AppSettings::one().projectors[i].size;
+        ofVec2f projectorSize = ProjectorManager::one().projectors[i]->size;
         float projectorRatio = projectorSize.y / projectorSize.x;
-        scaledProjectors[i].size.y = size.y*boundingBoxPercent.y;
-        scaledProjectors[i].size.x = scaledProjectors[i].size.y/projectorRatio;
-        scaledProjectors[i].pos.y = projectorOrigin.y;
-        scaledProjectors[i].pos.x = projector_xPos;
+        scaledProjectors[i]->size.y = size.y*boundingBoxPercent.y;
+        scaledProjectors[i]->size.x = scaledProjectors[i]->size.y/projectorRatio;
+        scaledProjectors[i]->pos.y = projectorOrigin.y;
+        scaledProjectors[i]->pos.x = projector_xPos;
         
-        projector_xPos += scaledProjectors[i].size.x;
+        projector_xPos += scaledProjectors[i]->size.x;
         
         
     }
@@ -188,14 +191,14 @@ void CroppingManager::calculateWarpAttributes()
     for(int i=0; i < scaledProjectors.size() ; i++)
     {
         
-        int numWarps = AppSettings::one().projectors[i].numWarps;
-        float warpWidth = scaledProjectors[i].size.x/numWarps;
+        int numWarps = ProjectorManager::one().projectors[i]->numWarps;
+        float warpWidth = scaledProjectors[i]->size.x/numWarps;
         
         for(int j = 0; j < numWarps; j++)
         {
             //Create a visual warp object for cropping interface
             warps[counter]->setPosition(ofVec2f(warpOriginX, projectorOrigin.y));
-            warps[counter]->setSize(ofVec2f(warpWidth, scaledProjectors[i].size.y));
+            warps[counter]->setSize(ofVec2f(warpWidth, scaledProjectors[i]->size.y));
             warpOriginX += warpWidth;
             counter++;
     
@@ -389,7 +392,7 @@ void CroppingManager::onTouchMove(ofxInterface::TouchEvent& event)
 
 #pragma mark CROP INFO
 
-CropInfo CroppingManager::getCropData(int cropIndex)
+CroppingManager::CropInfo CroppingManager::getCropData(int cropIndex)
 {
     if(cropIndex < cropData.size())
     {
