@@ -132,9 +132,9 @@ void EdgeBlend::onButtonEvent(ofxDatGuiButtonEvent e)
 {
     //Send event via notification center
     ofxNotificationCenter::Notification mnd;
-    mnd.ID = Global::one().edgeBlendGui_id;
+    mnd.ID = IDManager::one().edgeBlendGui_id;
     mnd.data["index"] = index;
     
-    ofxNotificationCenter::one().postNotification(Global::one().edgeBlendGui_id, mnd);
+    ofxNotificationCenter::one().postNotification(IDManager::one().edgeBlendGui_id, mnd);
 }
 

@@ -7,6 +7,8 @@
 //
 //
 
+#include "ofxProjectionApp.h"
+
 ofxProjectionApp::ofxProjectionApp()
 {
     
@@ -17,7 +19,7 @@ ofxProjectionApp::~ofxProjectionApp()
     
 }
 
-void ofxProjectionApp::setup(ofFbo * _canvasRef, bool _loadFromFile, string _directoryPath)
+void ofxProjectionApp::setup(ofFbo * _canvasRef, bool _loadFromFile, string _directoryPath,  ofVec2f _appSize, float _scaleDenominator)
 {
     warpController = new ofxWarpController();
     
@@ -26,6 +28,9 @@ void ofxProjectionApp::setup(ofFbo * _canvasRef, bool _loadFromFile, string _dir
     
     loadFromFile = _loadFromFile;
     directoryPath = _directoryPath;
+    
+    appSize = _appSize;
+    scaleDenominator = _scaleDenominator;
     
     /*
      Set up listeners
@@ -70,12 +75,12 @@ void ofxProjectionApp::setupWarps()
                 
                 
                 float xPos_l = projectorOrigin.x + (projectors[i].size.x/projectors[i].numWarps)*j;
-                xPos_l = xPos_l/AppSettings::one().appSize.x;
-                xPos_l = xPos_l/AppSettings::one().scaleDenominator;
+                xPos_l = xPos_l/appSize.x;
+                xPos_l = xPos_l/scaleDenominator;
                 
                 float xPos_r = projectorOrigin.x + (projectors[i].size.x/projectors[i].numWarps)*(j + 1);
-                xPos_r = xPos_r/AppSettings::one().appSize.x;
-                xPos_r = xPos_r/AppSettings::one().scaleDenominator;
+                xPos_r = xPos_r/appSize.x;
+                xPos_r = xPos_r/scaleDenominator;
                 
                 
                 glm::vec2 tl = glm::vec2(xPos_l, 0.0f);
@@ -117,11 +122,11 @@ void ofxProjectionApp::setupWarps()
     /*
      Set up callbacks for notification center.
      */
-    ofxNotificationCenter::one().addObserver(this, &ofxProjectionApp::onSaveSettings, Global::one().saveProjSetting_id);
+    ofxNotificationCenter::one().addObserver(this, &ofxProjectionApp::onSaveSettings, IDManager::one().saveProjSetting_id);
     
-    ofxNotificationCenter::one().addObserver(this, &ofxProjectionApp::onLoadSettings, Global::one().loadProjSetting_id);
+    ofxNotificationCenter::one().addObserver(this, &ofxProjectionApp::onLoadSettings, IDManager::one().loadProjSetting_id);
     
-    ofxNotificationCenter::one().addObserver(this, &ofxProjectionApp::onCloseEdgeBlendGui, Global::one().edgeBlendGui_id);
+    ofxNotificationCenter::one().addObserver(this, &ofxProjectionApp::onCloseEdgeBlendGui, IDManager::one().edgeBlendGui_id);
     
     //Debug purposes
     debugImg.load("testcard.png");
@@ -309,14 +314,14 @@ void ofxProjectionApp::onSaveSettings(ofxNotificationCenter::Notification & n)
     //! Save warp settings
     string notificationID = n.ID; //the notification ID is available to you
     string directory = n.data["directory"]; //get what you need from the data field
-    string fileName = ofFilePath::join(directory, warpDataFileName);
-    string path = ofFilePath::join(Global::one().projectionDirectory, fileName);
+    string path = ofFilePath::join(directory, warpDataFileName);
+    //string path = ofFilePath::join(Global::one().projectionDirectory, fileName);
     warpPath = path;
     warpController->saveSettings(warpPath);
     
     //! Save crop settings
-    string cropDataFileName = ofFilePath::join(directory, cropCropFileName);
-    string cropPath = ofFilePath::join(Global::one().projectionDirectory, cropDataFileName);
+    string cropPath = ofFilePath::join(directory, cropCropFileName);
+    //string cropPath = ofFilePath::join(Global::one().projectionDirectory, cropDataFileName);
     saveCropData(cropPath);
     cropPath = path;
     ofLogNotice("ofxProjectionApp::onSaveSettings") << "Saving current projection settings at " << path;
@@ -454,9 +459,9 @@ void ofxProjectionApp::loadNewSettings()
         
         //! Notify CropManager & GUIManager to update the interfaces
         ofxNotificationCenter::Notification mnd;
-        mnd.ID = Global::one().updateCropInterface_id;
+        mnd.ID = IDManager::one().updateCropInterface_id;
         
-        ofxNotificationCenter::one().postNotification(Global::one().updateCropInterface_id, mnd);
+        ofxNotificationCenter::one().postNotification(IDManager::one().updateCropInterface_id, mnd);
         
     }
     else

@@ -22,7 +22,7 @@ public:
     ofxProjectionApp();
     ~ofxProjectionApp();
     
-    void setup(ofFbo * _canvasRef, bool _loadFromFile, string _directoryPath = "");
+    void setup(ofFbo * _canvasRef, bool _loadFromFile, string _directoryPath = "", ofVec2f _appSize, float _scaleDenominator = 1.0f);
     void setupWarps();
     void setupEdges();
     void update();
@@ -47,6 +47,10 @@ public:
      Saving
      */
     void saveCurrentSettings();
+    
+    /*
+     Cropping Manager
+     */
     
     
 protected:
@@ -119,5 +123,13 @@ protected:
      Loading
      */
     void loadNewSettings();
+    
+    /*
+     AppSize & Scale
+     */
+    ofVec2f appSize;
+    
+    //!scaleDenominator this is for development purposes if you are developing locally at a smaller scale
+    float scaleDenominator = 1.0f;
 };
 
