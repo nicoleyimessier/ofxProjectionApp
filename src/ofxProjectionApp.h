@@ -50,7 +50,11 @@ public:
      */
     void saveCurrentSettings();
 
-    
+    /*
+     GUI Visibility
+     */
+    void setCropManagerVisible(bool visiblity);
+    void setMainGuiVisible(bool visibility);
     
 protected:
     /*

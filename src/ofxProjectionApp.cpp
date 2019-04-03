@@ -142,6 +142,7 @@ void ofxProjectionApp::setupWarps()
 
 void ofxProjectionApp::setupCroppingManager()
 {
+    
     /*
      Cropping Manager
      */
@@ -149,6 +150,8 @@ void ofxProjectionApp::setupCroppingManager()
     cropMan->setup(appSize*guiMan->getCropSize(), ofVec2f(0,0), warpController->getNumWarps(), canvasRef);
     cropMan->setVisible(false);
     sceneRef->addChild(cropMan);
+    
+    cropMan->setupScaledProjectors(ProjectorManager::one().projectors); 
 }
 
 void ofxProjectionApp::setupEdges()
@@ -274,6 +277,17 @@ void ofxProjectionApp::setGuiState(GUIStates _guiState)
         default: break;
     }
 }
+
+void ofxProjectionApp::setCropManagerVisible(bool visiblity)
+{
+    cropMan->setVisible(visiblity);
+}
+
+void ofxProjectionApp::setMainGuiVisible(bool visibility)
+{
+    guiMan->getGui()->setVisible(visibility); 
+}
+
 
 #pragma mark CROP DATA
 void ofxProjectionApp::setupCropJsonData()

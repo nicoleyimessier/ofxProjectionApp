@@ -41,6 +41,7 @@ void CroppingManager::setup(ofVec2f size, ofVec2f pos, int numCrops, ofFbo *_can
         temp->setup(ofVec2f(0.0f, 0.0f), ofVec2f(0.0f, 0.0f), counter);
         temp->setCanvasReference(canvasRef);
         addChild(temp);
+        temp->setVisible(true); 
         warps.push_back(temp);
         
         //Create a global crop object
@@ -90,9 +91,13 @@ void CroppingManager::setupScaledProjectors(vector<Projector*> & projectors)
     {
         Projector * temp  = new Projector();
         temp->setup(projectors[i]->order, projectors[i]->numWarps);
+        
+        scaledProjectors.push_back(temp); 
     }
     
     caclulateProjectorAttributes();
+    
+    calculateWarpAttributes();
 }
 
 void CroppingManager::update(float dt)
