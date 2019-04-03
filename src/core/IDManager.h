@@ -21,8 +21,8 @@ public:
         return instance;
     }
     
-    IDManager();
-    ~IDManager();
+    IDManager(){};
+    ~IDManager(){};
     
     /*
      Notification IDs

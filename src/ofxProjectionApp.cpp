@@ -134,9 +134,10 @@ void ofxProjectionApp::setupWarps()
     //Debug purposes
     debugImg.load("testcard.png");
     
-    setupCropJsonData();
     
-    setupCroppingManager(); 
+    setupCroppingManager();
+    
+    setupCropJsonData();
 }
 
 void ofxProjectionApp::setupCroppingManager()

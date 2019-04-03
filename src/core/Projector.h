@@ -15,10 +15,10 @@
 class Projector
 {
 public:
-    Projector();
-    ~Projector();
+    Projector(){};
+    ~Projector(){};
     
-    void setup(int _order, int _numWarps, ofVec2f _size = ofVec2f(0.0f, 0.0f), ofVec2f _pos  = ofVec2f(0.0f, 0.0f))
+    void setup(int _order, int _numWarps, ofVec2f _size = ofVec2f(0.0f, 0.0f), ofVec2f _pos = ofVec2f(0.0f, 0.0f))
     {
         order = _order;
         numWarps = _numWarps;

@@ -9,6 +9,7 @@
 #pragma once
 #include "ofMain.h"
 #include "Projector.h"
+    
 class ProjectorManager
 {
 public:
@@ -19,17 +20,24 @@ public:
         return instance;
     }
     
-    ProjectorManager();
-    ~ProjectorManager();
+    ProjectorManager(){};
+    ~ProjectorManager(){};
     
     vector<Projector*> projectors;
     
     /*
      Projector Data
      */
-    void addProjector(Projector *projector);
+    void addProjector(int _order, int _numWarps, ofVec2f _size, ofVec2f _pos)
+    {
+        Projector *temp = new Projector();
+        temp->setup(_order, _numWarps, _size, _pos);
+        projectors.push_back(temp);
+    
+    };
 
     
 private:
     
 };
+    

@@ -85,7 +85,7 @@ protected:
     /*
      State management of all the different GUIS
      */
-    GUIStates guiState;
+    GUIStates guiState = GUIStates::EDGE_BLEND_GUIS_CLOSED;
     void setGuiState(GUIStates _guiState);
     
     /*
