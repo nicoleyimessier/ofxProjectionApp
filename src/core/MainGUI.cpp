@@ -18,10 +18,10 @@ MainGUI::~MainGUI()
     
 }
 
-void MainGUI::setup(vector<string> &appStates, string _projectionDirectory)
+void MainGUI::setup(vector<string> &appStates, string _currentDirectory)
 {
     
-    projectionDirectory = _projectionDirectory;
+	currentDirectory = _currentDirectory;
     
     // instantiate and position the gui //
     gui = new ofxDatGui( ofxDatGuiAnchor::TOP_RIGHT );
@@ -50,7 +50,11 @@ void MainGUI::setup(vector<string> &appStates, string _projectionDirectory)
     
     for(int i = 0; i < numFiles; i++)
     {
+ 
         string path = dir.getPath(i);
+
+		ofLogNotice("MainGUI") << "Setting up " << path << " in drop down.";
+
         paths.push_back(path);
     }
     

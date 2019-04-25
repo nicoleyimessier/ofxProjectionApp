@@ -102,6 +102,9 @@ void ofxProjectionApp::setupWarps()
             }
             
         }
+
+		setupCroppingManager(); 
+
     }
     else
     {
@@ -112,9 +115,10 @@ void ofxProjectionApp::setupWarps()
         
         //Set up cropPath
         cropPath = ofFilePath::join(directoryPath, cropCropFileName);
-        
+
         loadNewSettings();
         
+		setupCroppingManager();
         
     }
     
@@ -135,7 +139,7 @@ void ofxProjectionApp::setupWarps()
     debugImg.load("testcard.png");
     
     
-    setupCroppingManager();
+    //setupCroppingManager();
     
     setupCropJsonData();
 }
