@@ -5,7 +5,7 @@
 #include "ofxProjectionApp.h"
 #include "AppSettings.h"
 #include "CanvasManager.h"
-//#include "ofxInterface.h"
+#include "ofxInterface.h"
 #include "Global.h"
 
 class ofApp : public CustomApp{
