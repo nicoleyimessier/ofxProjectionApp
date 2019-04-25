@@ -6,7 +6,7 @@ endif
 
 # make sure the the OF_ROOT location is defined
 ifndef OF_ROOT
-	OF_ROOT=$(realpath ../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks)
+	OF_ROOT=$(realpath ../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks)
 endif
 
 # call the project makefile!

@@ -6,9 +6,9 @@
 ################################################################################
 # OF ROOT
 #   The location of your root openFrameworks installation
-#       (default) OF_ROOT = ../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks 
+#       (default) OF_ROOT = ../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks 
 ################################################################################
-# OF_ROOT = ../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/../../../../../../hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks
+# OF_ROOT = ../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/../../../OpenFrameworks/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks/hpbm/lp-hpbm.projections/OpenFrameworks
 
 ################################################################################
 # PROJECT ROOT

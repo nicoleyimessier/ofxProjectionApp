@@ -1,0 +1,50 @@
+{
+    "warps": [
+        {
+            "adaptive": true,
+            "blend": {
+                "edges": "0.5, 0.5, 0.5, 0.5",
+                "exponent": 1.0,
+                "gamma": "100, 100, 100",
+                "luminance": "0.5, 0.5, 0.5"
+            },
+            "brightness": 1.0,
+            "linear": false,
+            "resolution": 16,
+            "type": 1,
+            "warp": {
+                "columns": 2,
+                "control points": [
+                    "0, 0",
+                    "0, 1",
+                    "0.5, 0",
+                    "0.5, 1"
+                ],
+                "rows": 2
+            }
+        },
+        {
+            "adaptive": true,
+            "blend": {
+                "edges": "0.5, 0.5, 0.5, 0.5",
+                "exponent": 1.0,
+                "gamma": "100, 100, 100",
+                "luminance": "0.5, 0.5, 0.5"
+            },
+            "brightness": 1.0,
+            "linear": false,
+            "resolution": 16,
+            "type": 1,
+            "warp": {
+                "columns": 2,
+                "control points": [
+                    "0.5, 0",
+                    "0.5, 1",
+                    "1, 0",
+                    "1, 1"
+                ],
+                "rows": 2
+            }
+        }
+    ]
+}

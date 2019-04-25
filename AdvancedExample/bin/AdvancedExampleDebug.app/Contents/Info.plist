@@ -38,9 +38,5 @@
 	<string>0800</string>
 	<key>DTXcodeBuild</key>
 	<string>8A218a</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This app needs to access the camera</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This app needs to access the microphone</string>
 </dict>
 </plist>
