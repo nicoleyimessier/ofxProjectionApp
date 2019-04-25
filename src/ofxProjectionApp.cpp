@@ -116,10 +116,11 @@ void ofxProjectionApp::setupWarps()
         //Set up cropPath
         cropPath = ofFilePath::join(directoryPath, cropCropFileName);
 
-        loadNewSettings();
+        //loadNewSettings();
         
+		loadWarpSettings();
 		setupCroppingManager();
-        
+		loadCropSettings();
     }
     
     ofLogNotice("ofxProjectionApp::setupWarps") << "Set up " << warpController->getNumWarps() << " warps.";
@@ -420,91 +421,109 @@ void ofxProjectionApp::saveCurrentSettings()
 }
 
 #pragma mark LOADING
+
+void ofxProjectionApp::loadWarpSettings()
+{
+	ofLogNotice("ofxProjectionApp::loadWarpSettings") << "Loading warp settings: " << warpPath;
+
+	warpController->loadSettings(warpPath);
+
+	//! Update slider for edge blending values based on these loaded settings
+	int numWarps = warpController->getNumWarps();
+
+
+	//Set up edgeGuis
+	for (int i = edgeGuis.size() - 1; i >= 0; i--) {
+
+		EdgeBlend * deleteGui = edgeGuis[i];
+		edgeGuis.erase(edgeGuis.begin() + i);
+		delete deleteGui;
+	}
+
+	edgeGuis.clear();
+
+	for (int i = 0; i < numWarps; i++)
+	{
+		auto warp = warpController->getWarp(i);
+
+		EdgeBlend *temp = new EdgeBlend();
+		temp->setup(i);
+
+		//Edge Blending
+		glm::vec4 edges = warp->getEdges();
+		glm::vec3 gamma = warp->getGamma();
+		float exp = warp->getExponent();
+
+		temp->setEdges(edges);
+		temp->setGamma(gamma);
+		temp->setExponent(exp);
+
+		edgeGuis.push_back(temp);
+
+	}
+}
+
+void ofxProjectionApp::loadCropSettings()
+{
+
+	ofLogNotice("ofxProjectionApp::loadCropSettings") << "Loading crop settings: " << cropPath;
+
+	ofxJSONElement newCropData;
+	bool parseNewCropData = newCropData.open(cropPath);
+
+
+	if (parseNewCropData)
+	{
+		try
+		{
+
+			//Resize crop data
+			cropMan->resizeCropDataVector(newCropData.size());
+
+			for (int i = 0; i < newCropData.size(); i++)
+			{
+
+
+				CroppingManager::CropInfo temp;
+
+				temp.index = newCropData[i]["warpID"].asInt();
+				temp.size.x = newCropData[i]["width"].asFloat();
+				temp.size.y = newCropData[i]["height"].asFloat();
+				temp.pos.x = newCropData[i]["xPos"].asFloat();
+				temp.pos.y = newCropData[i]["yPos"].asFloat();
+
+				cropMan->updateCropData(temp, i);
+
+			}
+
+
+		}
+		catch (exception exc)
+		{
+			ofLogError("ofxProjectionApp::loadNewSettings") << exc.what() << " While parsing " << newCropData.getRawString();
+		}
+
+		//! Notify CropManager & GUIManager to update the interfaces
+		ofxNotificationCenter::Notification mnd;
+		mnd.ID = IDManager::one().updateCropInterface_id;
+
+		ofxNotificationCenter::one().postNotification(IDManager::one().updateCropInterface_id, mnd);
+
+	}
+	else
+	{
+		ofLogError("ofxProjectionApp::loadNewSettings") << "Unable to parse " << cropPath;
+	}
+}
+
+
 void ofxProjectionApp::loadNewSettings()
 {
     ofLogNotice("ofxProjectionApp::loadNewSettings") << "Loading settings: " << warpPath << " and " << cropPath;
     
-    warpController->loadSettings(warpPath);
-    
-    //! Update slider for edge blending values based on these loaded settings
-    int numWarps = warpController->getNumWarps();
-    
-    
-    //Set up edgeGuis
-    for(int i=edgeGuis.size() - 1; i>=0; i--){
-        
-        EdgeBlend * deleteGui = edgeGuis[i];
-        edgeGuis.erase(edgeGuis.begin() + i);
-        delete deleteGui;
-    }
-    
-    edgeGuis.clear();
-    
-    for(int i =0; i < numWarps; i++)
-    {
-        auto warp = warpController->getWarp(i);
-        
-        EdgeBlend *temp = new EdgeBlend();
-        temp->setup(i);
-        
-        //Edge Blending
-        glm::vec4 edges = warp->getEdges();
-        glm::vec3 gamma = warp->getGamma();
-        float exp = warp->getExponent();
-        
-        temp->setEdges(edges);
-        temp->setGamma(gamma);
-        temp->setExponent(exp);
-        
-        edgeGuis.push_back(temp);
-        
-    }
-    
-    ofxJSONElement newCropData;
-    bool parseNewCropData = newCropData.open(cropPath);
-    
-    if(parseNewCropData)
-    {
-        try
-        {
-            for(int i = 0; i < newCropData.size(); i++)
-            {
-                if(newCropData.size() == cropMan->getCropDataSize())
-                {
-                    CroppingManager::CropInfo temp;
-                    
-                    temp.index = newCropData[i]["warpID"].asInt();
-                    temp.size.x = newCropData[i]["width"].asFloat() ;
-                    temp.size.y = newCropData[i]["height"].asFloat();
-                    temp.pos.x = newCropData[i]["xPos"].asFloat();
-                    temp.pos.y = newCropData[i]["yPos"].asFloat();
-                    
-                    cropMan->updateCropData(temp, i);
-                }
-                else
-                {
-                    ofLogError("ofxProjectionApp::loadNewSettings") << cropPath << " does not have the same amount of objects as cropMan->getCropDataSize():  " << cropMan->getCropDataSize();
-                }
-            }
-            
-            
-        }
-        catch(exception exc)
-        {
-            ofLogError("ofxProjectionApp::loadNewSettings") << exc.what() << " While parsing " << newCropData.getRawString();
-        }
-        
-        //! Notify CropManager & GUIManager to update the interfaces
-        ofxNotificationCenter::Notification mnd;
-        mnd.ID = IDManager::one().updateCropInterface_id;
-        
-        ofxNotificationCenter::one().postNotification(IDManager::one().updateCropInterface_id, mnd);
-        
-    }
-    else
-    {
-        ofLogError("ofxProjectionApp::loadNewSettings") << "Unable to parse " << cropPath;
-    }
+	loadWarpSettings(); 
+	loadCropSettings(); 
+   
     
 }
 

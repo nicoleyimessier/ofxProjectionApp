@@ -65,6 +65,8 @@ public:
     CropInfo getCropData(int cropIndex);
     void updateCropData(CropInfo data, int CropIndex);
     int getCropDataSize();
+	
+	void resizeCropDataVector(int cropSize); 
     
 private:
     /*
