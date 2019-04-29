@@ -49,7 +49,7 @@ void ofxProjectionApp::setupWarps()
         
         //Set up projector origin that can be added to for each projector
         glm::vec2 projectorOrigin = glm::vec2(0.0f, 0.0f);
-    std:shared_ptr<ofxWarpBase> warp;
+        std:shared_ptr<ofxWarpBase> warp;
         
         for(int i = 0; i < ProjectorManager::one().projectors.size(); i++)
         {

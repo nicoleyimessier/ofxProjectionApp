@@ -43,6 +43,13 @@ void MainGUI::setup(vector<string> &appStates, string _currentDirectory)
     /*
      Add drop down menu for projection settings
      */
+    
+    if(!ofDirectory::doesDirectoryExist(projectionDirectory))
+    {
+        //Create directory
+        ofDirectory::createDirectory(projectionDirectory); 
+    }
+
     ofDirectory dir;
     dir.listDir(projectionDirectory);
     int numFiles = dir.size();
