@@ -13,7 +13,7 @@ openFrameworksUniversal.a
 
 
 # Some general ignore patterns
-
+*.DS_Store
 [Bb]uild/
 [Oo]bj/
 *.o
