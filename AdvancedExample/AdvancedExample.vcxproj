@@ -1,0 +1,387 @@
+<?xml version="1.0"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|Win32">
+			<Configuration>Debug</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug|x64">
+			<Configuration>Debug</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|Win32">
+			<Configuration>Release</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|x64">
+			<Configuration>Release</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+	<PropertyGroup Condition="'$(WindowsTargetPlatformVersion)'==''">
+		<LatestTargetPlatformVersion>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</LatestTargetPlatformVersion>
+		<WindowsTargetPlatformVersion Condition="'$(WindowsTargetPlatformVersion)' == ''">$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+		<TargetPlatformVersion>$(WindowsTargetPlatformVersion)</TargetPlatformVersion>
+	</PropertyGroup>
+	<PropertyGroup Label="Globals">
+		<ProjectGuid>{7FD42DF7-442E-479A-BA76-D0022F99702A}</ProjectGuid>
+		<Keyword>Win32Proj</Keyword>
+		<RootNamespace>AdvancedExample</RootNamespace>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<PlatformToolset>v141</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<PlatformToolset>v141</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<WholeProgramOptimization>true</WholeProgramOptimization>
+		<PlatformToolset>v141</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<WholeProgramOptimization>true</WholeProgramOptimization>
+		<PlatformToolset>v141</PlatformToolset>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="../../../OpenFrameworks/libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="../../../OpenFrameworks/libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="../../../OpenFrameworks/libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="../../../OpenFrameworks/libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+	</ImportGroup>
+	<PropertyGroup Label="UserMacros" />
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+		<OutDir>bin\</OutDir>
+		<IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+		<TargetName>$(ProjectName)_debug</TargetName>
+		<LinkIncremental>true</LinkIncremental>
+		<GenerateManifest>true</GenerateManifest>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<OutDir>bin\</OutDir>
+		<IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+		<TargetName>$(ProjectName)_debug</TargetName>
+		<LinkIncremental>true</LinkIncremental>
+		<GenerateManifest>true</GenerateManifest>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+		<OutDir>bin\</OutDir>
+		<IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+		<LinkIncremental>false</LinkIncremental>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<OutDir>bin\</OutDir>
+		<IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+		<LinkIncremental>false</LinkIncremental>
+	</PropertyGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+		<ClCompile>
+			<Optimization>Disabled</Optimization>
+			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+			<WarningLevel>Level3</WarningLevel>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\OpenFrameworks\addons\ofxOsc\libs;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\posix;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc;..\..\..\OpenFrameworks\addons\ofxOsc\src;..\..\..\OpenFrameworks\addons\ofxPoco\libs\poco\include;..\..\..\OpenFrameworks\addons\ofxPoco\src;..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs;..\..\..\OpenFrameworks\addons\ofxXmlSettings\src;..\..\..\ExternalAddons\ofxTimeMeasurements\src;..\..\..\ExternalAddons\ofxRemoteUI\src;..\..\..\ExternalAddons\ofxHistoryPlot\src;..\..\..\ExternalAddons\ofxAnimatable\src;..\..\..\ExternalAddons\ofxFontStash\libs;..\..\..\ExternalAddons\ofxFontStash\libs\fontstash;..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src;..\..\..\ExternalAddons\ofxFontStash\src;..\..\..\ExternalAddons\ofxScreenSetup\src;..\..\..\ExternalAddons\ofxSuperLog\src;..\..\..\ExternalAddons\ofxDatGui\src;..\..\..\ExternalAddons\ofxDatGui\src\components;..\..\..\ExternalAddons\ofxDatGui\src\core;..\..\..\ExternalAddons\ofxDatGui\src\libs;..\..\..\ExternalAddons\ofxDatGui\src\libs\ofxSmartFont;..\..\..\ExternalAddons\ofxDatGui\src\themes;..\..\..\ExternalAddons\ofxInterface\src;..\..\..\ExternalAddons\ofxInterface\src\components;..\..\..\ExternalAddons\ofxWarp\src;..\..\..\ExternalAddons\ofxWarp\src\ofxWarp;..\..\..\ExternalAddons\ofxJSON\libs;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include\json;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\src;..\..\..\ExternalAddons\ofxJSON\src;..\..\..\ExternalAddons\ofxNotificationCenter\src;..\..\..\ExternalAddons\ofxProjectionApp\src;..\..\..\ExternalAddons\ofxProjectionApp\src\core;..\..\..\ExternalAddons\ofxProjectionApp\src\cropping</AdditionalIncludeDirectories>
+			<CompileAs>CompileAsCpp</CompileAs>
+			<ObjectFileName>$(IntDir)</ObjectFileName>
+			<PreprocessorDefinitions>OSC_HOST_LITTLE_ENDIAN</PreprocessorDefinitions>
+			<AdditionalOptions>-DPOCO_STATIC</AdditionalOptions>
+		</ClCompile>
+		<Link>
+			<GenerateDebugInformation>true</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<RandomizedBaseAddress>false</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies);PocoCryptomdd.lib;PocoDatamdd.lib;PocoDataSQLitemdd.lib;PocoFoundationmdd.lib;PocoJSONmdd.lib;PocoNetmdd.lib;PocoNetSSLmdd.lib;PocoPDFmdd.lib;PocoUtilmdd.lib;PocoXMLmdd.lib;PocoZipmdd.lib;iphlpapi.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\OpenFrameworks\addons\ofxPoco\libs\poco\lib\vs\Win32\Debug;..\..\..\OpenFrameworks\addons\ofxPoco</AdditionalLibraryDirectories>
+		</Link>
+		<PostBuildEvent />
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<ClCompile>
+			<Optimization>Disabled</Optimization>
+			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+			<WarningLevel>Level3</WarningLevel>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\OpenFrameworks\addons\ofxOsc\libs;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\posix;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc;..\..\..\OpenFrameworks\addons\ofxOsc\src;..\..\..\OpenFrameworks\addons\ofxPoco\libs\poco\include;..\..\..\OpenFrameworks\addons\ofxPoco\src;..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs;..\..\..\OpenFrameworks\addons\ofxXmlSettings\src;..\..\..\ExternalAddons\ofxTimeMeasurements\src;..\..\..\ExternalAddons\ofxRemoteUI\src;..\..\..\ExternalAddons\ofxHistoryPlot\src;..\..\..\ExternalAddons\ofxAnimatable\src;..\..\..\ExternalAddons\ofxFontStash\libs;..\..\..\ExternalAddons\ofxFontStash\libs\fontstash;..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src;..\..\..\ExternalAddons\ofxFontStash\src;..\..\..\ExternalAddons\ofxScreenSetup\src;..\..\..\ExternalAddons\ofxSuperLog\src;..\..\..\ExternalAddons\ofxDatGui\src;..\..\..\ExternalAddons\ofxDatGui\src\components;..\..\..\ExternalAddons\ofxDatGui\src\core;..\..\..\ExternalAddons\ofxDatGui\src\libs;..\..\..\ExternalAddons\ofxDatGui\src\libs\ofxSmartFont;..\..\..\ExternalAddons\ofxDatGui\src\themes;..\..\..\ExternalAddons\ofxInterface\src;..\..\..\ExternalAddons\ofxInterface\src\components;..\..\..\ExternalAddons\ofxWarp\src;..\..\..\ExternalAddons\ofxWarp\src\ofxWarp;..\..\..\ExternalAddons\ofxJSON\libs;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include\json;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\src;..\..\..\ExternalAddons\ofxJSON\src;..\..\..\ExternalAddons\ofxNotificationCenter\src;..\..\..\ExternalAddons\ofxProjectionApp\src;..\..\..\ExternalAddons\ofxProjectionApp\src\core;..\..\..\ExternalAddons\ofxProjectionApp\src\cropping</AdditionalIncludeDirectories>
+			<CompileAs>CompileAsCpp</CompileAs>
+			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+			<ObjectFileName>$(IntDir)</ObjectFileName>
+			<PreprocessorDefinitions>OSC_HOST_LITTLE_ENDIAN</PreprocessorDefinitions>
+			<AdditionalOptions>-DPOCO_STATIC</AdditionalOptions>
+		</ClCompile>
+		<Link>
+			<GenerateDebugInformation>true</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<RandomizedBaseAddress>false</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies);PocoCryptomdd.lib;PocoDatamdd.lib;PocoDataSQLitemdd.lib;PocoFoundationmdd.lib;PocoJSONmdd.lib;PocoNetmdd.lib;PocoNetSSLmdd.lib;PocoPDFmdd.lib;PocoUtilmdd.lib;PocoXMLmdd.lib;PocoZipmdd.lib;iphlpapi.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\OpenFrameworks\addons\ofxPoco\libs\poco\lib\vs\x64\Debug;..\..\..\OpenFrameworks\addons\ofxPoco</AdditionalLibraryDirectories>
+		</Link>
+		<PostBuildEvent />
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+		<ClCompile>
+			<WholeProgramOptimization>false</WholeProgramOptimization>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+			<WarningLevel>Level3</WarningLevel>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\OpenFrameworks\addons\ofxOsc\libs;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\posix;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc;..\..\..\OpenFrameworks\addons\ofxOsc\src;..\..\..\OpenFrameworks\addons\ofxPoco\libs\poco\include;..\..\..\OpenFrameworks\addons\ofxPoco\src;..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs;..\..\..\OpenFrameworks\addons\ofxXmlSettings\src;..\..\..\ExternalAddons\ofxTimeMeasurements\src;..\..\..\ExternalAddons\ofxRemoteUI\src;..\..\..\ExternalAddons\ofxHistoryPlot\src;..\..\..\ExternalAddons\ofxAnimatable\src;..\..\..\ExternalAddons\ofxFontStash\libs;..\..\..\ExternalAddons\ofxFontStash\libs\fontstash;..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src;..\..\..\ExternalAddons\ofxFontStash\src;..\..\..\ExternalAddons\ofxScreenSetup\src;..\..\..\ExternalAddons\ofxSuperLog\src;..\..\..\ExternalAddons\ofxDatGui\src;..\..\..\ExternalAddons\ofxDatGui\src\components;..\..\..\ExternalAddons\ofxDatGui\src\core;..\..\..\ExternalAddons\ofxDatGui\src\libs;..\..\..\ExternalAddons\ofxDatGui\src\libs\ofxSmartFont;..\..\..\ExternalAddons\ofxDatGui\src\themes;..\..\..\ExternalAddons\ofxInterface\src;..\..\..\ExternalAddons\ofxInterface\src\components;..\..\..\ExternalAddons\ofxWarp\src;..\..\..\ExternalAddons\ofxWarp\src\ofxWarp;..\..\..\ExternalAddons\ofxJSON\libs;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include\json;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\src;..\..\..\ExternalAddons\ofxJSON\src;..\..\..\ExternalAddons\ofxNotificationCenter\src;..\..\..\ExternalAddons\ofxProjectionApp\src;..\..\..\ExternalAddons\ofxProjectionApp\src\core;..\..\..\ExternalAddons\ofxProjectionApp\src\cropping</AdditionalIncludeDirectories>
+			<CompileAs>CompileAsCpp</CompileAs>
+			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+			<ObjectFileName>$(IntDir)</ObjectFileName>
+			<PreprocessorDefinitions>OSC_HOST_LITTLE_ENDIAN</PreprocessorDefinitions>
+			<AdditionalOptions>-DPOCO_STATIC</AdditionalOptions>
+		</ClCompile>
+		<Link>
+			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+			<GenerateDebugInformation>false</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<OptimizeReferences>true</OptimizeReferences>
+			<EnableCOMDATFolding>true</EnableCOMDATFolding>
+			<RandomizedBaseAddress>false</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies);PocoCryptomd.lib;PocoDatamd.lib;PocoDataSQLitemd.lib;PocoFoundationmd.lib;PocoJSONmd.lib;PocoNetmd.lib;PocoNetSSLmd.lib;PocoPDFmd.lib;PocoUtilmd.lib;PocoXMLmd.lib;PocoZipmd.lib;iphlpapi.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\OpenFrameworks\addons\ofxPoco\libs\poco\lib\vs\Win32\Release;..\..\..\OpenFrameworks\addons\ofxPoco</AdditionalLibraryDirectories>
+		</Link>
+		<PostBuildEvent />
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<ClCompile>
+			<WholeProgramOptimization>false</WholeProgramOptimization>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+			<WarningLevel>Level3</WarningLevel>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\OpenFrameworks\addons\ofxOsc\libs;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\posix;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32;..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc;..\..\..\OpenFrameworks\addons\ofxOsc\src;..\..\..\OpenFrameworks\addons\ofxPoco\libs\poco\include;..\..\..\OpenFrameworks\addons\ofxPoco\src;..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs;..\..\..\OpenFrameworks\addons\ofxXmlSettings\src;..\..\..\ExternalAddons\ofxTimeMeasurements\src;..\..\..\ExternalAddons\ofxRemoteUI\src;..\..\..\ExternalAddons\ofxHistoryPlot\src;..\..\..\ExternalAddons\ofxAnimatable\src;..\..\..\ExternalAddons\ofxFontStash\libs;..\..\..\ExternalAddons\ofxFontStash\libs\fontstash;..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src;..\..\..\ExternalAddons\ofxFontStash\src;..\..\..\ExternalAddons\ofxScreenSetup\src;..\..\..\ExternalAddons\ofxSuperLog\src;..\..\..\ExternalAddons\ofxDatGui\src;..\..\..\ExternalAddons\ofxDatGui\src\components;..\..\..\ExternalAddons\ofxDatGui\src\core;..\..\..\ExternalAddons\ofxDatGui\src\libs;..\..\..\ExternalAddons\ofxDatGui\src\libs\ofxSmartFont;..\..\..\ExternalAddons\ofxDatGui\src\themes;..\..\..\ExternalAddons\ofxInterface\src;..\..\..\ExternalAddons\ofxInterface\src\components;..\..\..\ExternalAddons\ofxWarp\src;..\..\..\ExternalAddons\ofxWarp\src\ofxWarp;..\..\..\ExternalAddons\ofxJSON\libs;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include\json;..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\src;..\..\..\ExternalAddons\ofxJSON\src;..\..\..\ExternalAddons\ofxNotificationCenter\src;..\..\..\ExternalAddons\ofxProjectionApp\src;..\..\..\ExternalAddons\ofxProjectionApp\src\core;..\..\..\ExternalAddons\ofxProjectionApp\src\cropping</AdditionalIncludeDirectories>
+			<CompileAs>CompileAsCpp</CompileAs>
+			<ObjectFileName>$(IntDir)</ObjectFileName>
+			<PreprocessorDefinitions>OSC_HOST_LITTLE_ENDIAN</PreprocessorDefinitions>
+			<AdditionalOptions>-DPOCO_STATIC</AdditionalOptions>
+		</ClCompile>
+		<Link>
+			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+			<GenerateDebugInformation>false</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<OptimizeReferences>true</OptimizeReferences>
+			<EnableCOMDATFolding>true</EnableCOMDATFolding>
+			<RandomizedBaseAddress>false</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies);PocoCryptomd.lib;PocoDatamd.lib;PocoDataSQLitemd.lib;PocoFoundationmd.lib;PocoJSONmd.lib;PocoNetmd.lib;PocoNetSSLmd.lib;PocoPDFmd.lib;PocoUtilmd.lib;PocoXMLmd.lib;PocoZipmd.lib;iphlpapi.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\OpenFrameworks\addons\ofxPoco\libs\poco\lib\vs\x64\Release;..\..\..\OpenFrameworks\addons\ofxPoco</AdditionalLibraryDirectories>
+		</Link>
+		<PostBuildEvent />
+	</ItemDefinitionGroup>
+	<ItemGroup>
+		<ClCompile Include="src\main.cpp" />
+		<ClCompile Include="src\ofApp.cpp" />
+		<ClCompile Include="src\AppSettings.cpp" />
+		<ClCompile Include="src\CanvasManager.cpp" />
+		<ClCompile Include="src\Global.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscBundle.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscMessage.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscParameterSync.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscReceiver.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscSender.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32\NetworkingUtils.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32\UdpSocket.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxPoco\src\ofxXmlPoco.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\src\ofxXmlSettings.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs\tinyxml.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxTimeMeasurements\src\ofxTimeMeasurements.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUI.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIClient.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUINeigbors.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIofParamaterSync.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIServer.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIWebServer.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\OscQueryServerMgr.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\RUIWebBinary.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\uriencode.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxHistoryPlot\src\ofxHistoryPlot.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatable.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableFloat.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableOfColor.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableOfPoint.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableQueue.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxFontStash\src\ofxFontStash.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src\fontstash.c" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src\stb_truetype.c" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxScreenSetup\src\ofxScreenSetup.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxSuperLog\src\ofxSuperLog.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxSuperLog\src\ofxSuperLogDisplay.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxDatGui\src\core\ofxDatGuiComponent.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxDatGui\src\libs\ofxSmartFont\ofxSmartFont.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxDatGui\src\ofxDatGui.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\components\BitmapTextButton.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\components\LambdaView.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\components\SolidColorPanel.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\components\TextureButton.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\Node.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\TouchEvent.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\TouchManager.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\VirtualTouch.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\Controller.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpBase.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpBilinear.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpPerspective.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpPerspectiveBilinear.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxJSON\src\ofxJSON.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\src\jsoncpp.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\EdgeBlend.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\MainGUI.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\Crop.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\CroppingManager.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\WarpVisual.cpp" />
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\ofxProjectionApp.cpp" />
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="src\ofApp.h" />
+		<ClInclude Include="src\AppSettings.h" />
+		<ClInclude Include="src\AppStructs.h" />
+		<ClInclude Include="src\CanvasManager.h" />
+		<ClInclude Include="src\CustomApp.h" />
+		<ClInclude Include="src\Global.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOsc.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscArg.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscBundle.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscMessage.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscParameterSync.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscReceiver.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscSender.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\NetworkingUtils.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\PacketListener.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\TimerListener.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\UdpSocket.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\MessageMappingOscPacketListener.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscException.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscHostEndianness.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPacketListener.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxPoco\src\ofxXmlPoco.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs\tinyxml.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxTimeMeasurements\src\GL_Measurement.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxTimeMeasurements\src\ofxTimeMeasurements.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxTimeMeasurements\src\ofxTimeMeasurementsMacros.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxTimeMeasurements\src\ofxTimeMeasurementsScoped.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\dirent_vs.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUI.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIClient.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUINeigbors.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIofParamaterSync.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIServer.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIServerMacros.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUISimpleNotifications.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIVars.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIWebServer.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\OscQueryServerMgr.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\RemoteParam.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\uriencode.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxHistoryPlot\src\ofxHistoryPlot.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatable.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableFloat.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableOfColor.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableOfPoint.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableQueue.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxFontStash\src\ofxFontStash.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src\fontstash.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src\stb_truetype.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxScreenSetup\src\ofxScreenSetup.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxSuperLog\src\ofxSuperLog.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxSuperLog\src\ofxSuperLogDisplay.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGui2dPad.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiButton.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiColorPicker.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiControls.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiFRM.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiGroups.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiLabel.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiMatrix.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiScrollView.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiSlider.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiTextInput.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiTextInputField.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiTimeGraph.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\core\ofxDatGuiComponent.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\core\ofxDatGuiConstants.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\core\ofxDatGuiEvents.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\core\ofxDatGuiIntObject.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\libs\ofxSmartFont\ofxSmartFont.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\ofxDatGui.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\themes\ofxDatGuiTheme.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\themes\ofxDatGuiThemes.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\components\BitmapTextButton.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\components\LambdaView.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\components\SolidColorPanel.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\components\TextureButton.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\Node.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\ofxInterface.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\TouchEvent.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\TouchManager.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\VirtualTouch.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\Controller.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpBase.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpBilinear.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpPerspective.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpPerspectiveBilinear.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxJSON\src\ofxJSON.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include\json\json-forwards.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include\json\json.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxNotificationCenter\src\ofxNotificationCenter.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\EdgeBlend.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\IDManager.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\MainGUI.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\Projector.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\ProjectorManager.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\Crop.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\CroppingManager.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\WarpVisual.h" />
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\ofxProjectionApp.h" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
+			<Project>{5837595d-aca9-485c-8e76-729040ce4b0b}</Project>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc">
+			<AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+			<AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+			<AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
+		</ResourceCompile>
+	</ItemGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties RESOURCE_FILE="icon.rc" />
+		</VisualStudio>
+	</ProjectExtensions>
+</Project>
