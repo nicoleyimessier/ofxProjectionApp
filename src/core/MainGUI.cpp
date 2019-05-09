@@ -60,7 +60,7 @@ void MainGUI::setup(vector<string> &appStates, string _projectionDirectory)
     /*
      Add slider for cropping manager (i.e. cropping interface) scale
      */
-    gui->addSlider(croppingManSize_slider, 0.0f, 1.0f, 0.5f);
+    gui->addSlider(croppingManSize_slider, 0.0f, 5.0f, 1.5f);
     gui->addSlider(cropWidth, 0.0f, 1.0f, 1.0f);
     gui->addSlider(cropHeight, 0.0f, 1.0f, 1.0f);
     gui->addSlider(cropXpos, 0.0f, 1.0f, 1.0f);
