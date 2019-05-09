@@ -1,0 +1,723 @@
+<?xml version="1.0"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\AppSettings.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\CanvasManager.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\Global.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscBundle.cpp">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscMessage.cpp">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscParameterSync.cpp">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscReceiver.cpp">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscSender.cpp">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.cpp">
+			<Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32\NetworkingUtils.cpp">
+			<Filter>addons\ofxOsc\libs\oscpack\src\ip\win32</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\win32\UdpSocket.cpp">
+			<Filter>addons\ofxOsc\libs\oscpack\src\ip\win32</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.cpp">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.cpp">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxPoco\src\ofxXmlPoco.cpp">
+			<Filter>addons\ofxPoco\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
+			<Filter>addons\ofxXmlSettings\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs\tinyxml.cpp">
+			<Filter>addons\ofxXmlSettings\libs</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs\tinyxmlerror.cpp">
+			<Filter>addons\ofxXmlSettings\libs</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
+			<Filter>addons\ofxXmlSettings\libs</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxTimeMeasurements\src\ofxTimeMeasurements.cpp">
+			<Filter>local_addons\ofxTimeMeasurements\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUI.cpp">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIClient.cpp">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUINeigbors.cpp">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIofParamaterSync.cpp">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIServer.cpp">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIWebServer.cpp">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\OscQueryServerMgr.cpp">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\RUIWebBinary.cpp">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxRemoteUI\src\uriencode.cpp">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxHistoryPlot\src\ofxHistoryPlot.cpp">
+			<Filter>local_addons\ofxHistoryPlot\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatable.cpp">
+			<Filter>local_addons\ofxAnimatable\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableFloat.cpp">
+			<Filter>local_addons\ofxAnimatable\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableOfColor.cpp">
+			<Filter>local_addons\ofxAnimatable\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableOfPoint.cpp">
+			<Filter>local_addons\ofxAnimatable\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableQueue.cpp">
+			<Filter>local_addons\ofxAnimatable\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxFontStash\src\ofxFontStash.cpp">
+			<Filter>local_addons\ofxFontStash\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src\fontstash.c">
+			<Filter>local_addons\ofxFontStash\libs\fontstash\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src\stb_truetype.c">
+			<Filter>local_addons\ofxFontStash\libs\fontstash\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxScreenSetup\src\ofxScreenSetup.cpp">
+			<Filter>local_addons\ofxScreenSetup\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxSuperLog\src\ofxSuperLog.cpp">
+			<Filter>local_addons\ofxSuperLog\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxSuperLog\src\ofxSuperLogDisplay.cpp">
+			<Filter>local_addons\ofxSuperLog\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxDatGui\src\core\ofxDatGuiComponent.cpp">
+			<Filter>local_addons\ofxDatGui\src\core</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxDatGui\src\libs\ofxSmartFont\ofxSmartFont.cpp">
+			<Filter>local_addons\ofxDatGui\src\libs\ofxSmartFont</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxDatGui\src\ofxDatGui.cpp">
+			<Filter>local_addons\ofxDatGui\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\components\BitmapTextButton.cpp">
+			<Filter>local_addons\ofxInterface\src\components</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\components\LambdaView.cpp">
+			<Filter>local_addons\ofxInterface\src\components</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\components\SolidColorPanel.cpp">
+			<Filter>local_addons\ofxInterface\src\components</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\components\TextureButton.cpp">
+			<Filter>local_addons\ofxInterface\src\components</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\Node.cpp">
+			<Filter>local_addons\ofxInterface\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\TouchEvent.cpp">
+			<Filter>local_addons\ofxInterface\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\TouchManager.cpp">
+			<Filter>local_addons\ofxInterface\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxInterface\src\VirtualTouch.cpp">
+			<Filter>local_addons\ofxInterface\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\Controller.cpp">
+			<Filter>local_addons\ofxWarp\src\ofxWarp</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpBase.cpp">
+			<Filter>local_addons\ofxWarp\src\ofxWarp</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpBilinear.cpp">
+			<Filter>local_addons\ofxWarp\src\ofxWarp</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpPerspective.cpp">
+			<Filter>local_addons\ofxWarp\src\ofxWarp</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpPerspectiveBilinear.cpp">
+			<Filter>local_addons\ofxWarp\src\ofxWarp</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxJSON\src\ofxJSON.cpp">
+			<Filter>local_addons\ofxJSON\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\src\jsoncpp.cpp">
+			<Filter>local_addons\ofxJSON\libs\jsoncpp\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\EdgeBlend.cpp">
+			<Filter>local_addons\ofxProjectionApp\src\core</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\MainGUI.cpp">
+			<Filter>local_addons\ofxProjectionApp\src\core</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\Crop.cpp">
+			<Filter>local_addons\ofxProjectionApp\src\cropping</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\CroppingManager.cpp">
+			<Filter>local_addons\ofxProjectionApp\src\cropping</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\WarpVisual.cpp">
+			<Filter>local_addons\ofxProjectionApp\src\cropping</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\ExternalAddons\ofxProjectionApp\src\ofxProjectionApp.cpp">
+			<Filter>local_addons\ofxProjectionApp\src</Filter>
+		</ClCompile>
+	</ItemGroup>
+	<ItemGroup>
+		<Filter Include="src">
+			<UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons">
+			<UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxOsc">
+			<UniqueIdentifier>{D91DCA33-6E5D-4481-2AEC-9FBB}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxOsc\src">
+			<UniqueIdentifier>{B9DD339A-D93D-92A1-0A2F-4B41}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxOsc\libs">
+			<UniqueIdentifier>{99ECA1D9-873F-4622-8FC0-FC7B}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxOsc\libs\oscpack">
+			<UniqueIdentifier>{D3A98534-1602-4FEF-57A6-6593}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxOsc\libs\oscpack\src">
+			<UniqueIdentifier>{BFB5BB47-98C8-BBCB-3066-1046}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxOsc\libs\oscpack\src\ip">
+			<UniqueIdentifier>{5A029128-EB41-95C5-CBC0-CDED}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxOsc\libs\oscpack\src\ip\win32">
+			<UniqueIdentifier>{79DFDFE2-400B-8654-3675-01A3}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxOsc\libs\oscpack\src\osc">
+			<UniqueIdentifier>{EDACB89C-9768-9551-4D41-B590}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxPoco">
+			<UniqueIdentifier>{3256AE3E-9B29-EA27-C842-CE6B}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxPoco\src">
+			<UniqueIdentifier>{C7D4269D-D8A9-A7BB-531B-98DA}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxXmlSettings">
+			<UniqueIdentifier>{877F005D-13E6-0592-1D97-F2E3}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxXmlSettings\src">
+			<UniqueIdentifier>{CCB2AC63-49D2-977C-CFE8-AEAD}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxXmlSettings\libs">
+			<UniqueIdentifier>{687714A8-1662-FA1C-261F-50F0}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons">
+			<UniqueIdentifier>{DE6745C7-E99D-D8E0-F77D-C032}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxTimeMeasurements">
+			<UniqueIdentifier>{32BA257A-3DF7-8582-5449-9372}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxTimeMeasurements\src">
+			<UniqueIdentifier>{51C0CAA9-C6D2-7306-59A9-C82B}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxRemoteUI">
+			<UniqueIdentifier>{DFCB62F2-EABF-394F-4C42-54C8}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxRemoteUI\src">
+			<UniqueIdentifier>{0E8034BD-932E-4031-A20F-9C02}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxHistoryPlot">
+			<UniqueIdentifier>{46264D9D-3FCE-0439-6F0F-1CF7}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxHistoryPlot\src">
+			<UniqueIdentifier>{41BC6D06-275B-CBF3-D851-4E6B}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxAnimatable">
+			<UniqueIdentifier>{F857966F-7F8C-9B79-939F-A2FC}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxAnimatable\src">
+			<UniqueIdentifier>{EEEC34D3-DAD3-19CA-B1F0-F0EC}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxFontStash">
+			<UniqueIdentifier>{B051AFE1-3013-ADDD-15A7-0AD2}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxFontStash\src">
+			<UniqueIdentifier>{EF8B715C-ACE0-6785-C1D1-3F05}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxFontStash\libs">
+			<UniqueIdentifier>{D60033D4-8642-42F4-F78B-50D8}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxFontStash\libs\fontstash">
+			<UniqueIdentifier>{9E57E047-5BCF-8535-677A-05D6}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxFontStash\libs\fontstash\src">
+			<UniqueIdentifier>{593F1156-D66B-CAC5-B6CD-59D1}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxScreenSetup">
+			<UniqueIdentifier>{7076A0A7-EBCA-9C7E-2845-106B}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxScreenSetup\src">
+			<UniqueIdentifier>{1CA68E43-F35A-0625-0B8F-3D67}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxSuperLog">
+			<UniqueIdentifier>{76F04823-B92C-0045-8CB5-C47F}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxSuperLog\src">
+			<UniqueIdentifier>{1A1F9A67-434F-9FDD-5551-03FC}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxDatGui">
+			<UniqueIdentifier>{25EC48F4-01A7-5C23-2A47-9006}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxDatGui\src">
+			<UniqueIdentifier>{5876A8E5-9611-7E69-00B7-6F7E}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxDatGui\src\components">
+			<UniqueIdentifier>{D2396D76-055E-93A7-ED40-207B}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxDatGui\src\core">
+			<UniqueIdentifier>{56B93E3D-8E5A-8CC5-25EB-C4CA}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxDatGui\src\libs">
+			<UniqueIdentifier>{DEBD87C4-4094-1682-5F32-2CB9}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxDatGui\src\libs\ofxSmartFont">
+			<UniqueIdentifier>{508E8654-F03D-263B-A191-2663}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxDatGui\src\themes">
+			<UniqueIdentifier>{4AE1CD5B-5A81-D8E5-0354-4C00}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxInterface">
+			<UniqueIdentifier>{A1A10A40-F4F8-0FC8-F583-A8E7}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxInterface\src">
+			<UniqueIdentifier>{7F2CE90C-43BE-01C6-63F8-CDD4}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxInterface\src\components">
+			<UniqueIdentifier>{02B6E5F1-AC69-FDDF-9C53-5F47}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxWarp">
+			<UniqueIdentifier>{DC25E8CD-F596-593D-CAD8-3393}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxWarp\src">
+			<UniqueIdentifier>{97E668F2-7267-CA4F-F54A-B693}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxWarp\src\ofxWarp">
+			<UniqueIdentifier>{F33AC200-99D2-D0B6-37F5-ACBF}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxJSON">
+			<UniqueIdentifier>{1A99E105-1782-1278-A06F-B3D9}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxJSON\src">
+			<UniqueIdentifier>{FA995221-33F4-C549-DE1A-51D6}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxJSON\libs">
+			<UniqueIdentifier>{C1337406-F751-4A66-E601-0163}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxJSON\libs\jsoncpp">
+			<UniqueIdentifier>{56AEAC4C-A855-5322-D1FD-BB5F}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxJSON\libs\jsoncpp\include">
+			<UniqueIdentifier>{C12F28DF-8DAD-61C5-F101-4FAE}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxJSON\libs\jsoncpp\include\json">
+			<UniqueIdentifier>{C3BF0A8C-681E-118F-968B-B76C}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxJSON\libs\jsoncpp\src">
+			<UniqueIdentifier>{14CF8E53-A6B8-6CD5-1224-1FF5}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxNotificationCenter">
+			<UniqueIdentifier>{9AC9D64F-8089-AA8E-10F7-029F}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxNotificationCenter\src">
+			<UniqueIdentifier>{8A24963F-7366-8D74-5E1F-D594}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxProjectionApp">
+			<UniqueIdentifier>{D80F9537-0F4A-9CA5-995E-B13E}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxProjectionApp\src">
+			<UniqueIdentifier>{83538C6D-90A3-D50C-FD62-3DC5}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxProjectionApp\src\core">
+			<UniqueIdentifier>{6BF687AA-ECD6-974E-6BA8-2495}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="local_addons\ofxProjectionApp\src\cropping">
+			<UniqueIdentifier>{345245FC-7809-910B-282E-6520}</UniqueIdentifier>
+		</Filter>
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\AppSettings.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\AppStructs.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\CanvasManager.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\CustomApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\Global.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOsc.h">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscArg.h">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscBundle.h">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscMessage.h">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscParameterSync.h">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscReceiver.h">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\src\ofxOscSender.h">
+			<Filter>addons\ofxOsc\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\NetworkingUtils.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\PacketListener.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\TimerListener.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\ip\UdpSocket.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\MessageMappingOscPacketListener.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscException.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscHostEndianness.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPacketListener.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h">
+			<Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxPoco\src\ofxXmlPoco.h">
+			<Filter>addons\ofxPoco\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\src\ofxXmlSettings.h">
+			<Filter>addons\ofxXmlSettings\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\OpenFrameworks\addons\ofxXmlSettings\libs\tinyxml.h">
+			<Filter>addons\ofxXmlSettings\libs</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxTimeMeasurements\src\GL_Measurement.h">
+			<Filter>local_addons\ofxTimeMeasurements\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxTimeMeasurements\src\ofxTimeMeasurements.h">
+			<Filter>local_addons\ofxTimeMeasurements\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxTimeMeasurements\src\ofxTimeMeasurementsMacros.h">
+			<Filter>local_addons\ofxTimeMeasurements\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxTimeMeasurements\src\ofxTimeMeasurementsScoped.h">
+			<Filter>local_addons\ofxTimeMeasurements\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\dirent_vs.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUI.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIClient.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUINeigbors.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIofParamaterSync.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIServer.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIServerMacros.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUISimpleNotifications.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIVars.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\ofxRemoteUIWebServer.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\OscQueryServerMgr.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\RemoteParam.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxRemoteUI\src\uriencode.h">
+			<Filter>local_addons\ofxRemoteUI\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxHistoryPlot\src\ofxHistoryPlot.h">
+			<Filter>local_addons\ofxHistoryPlot\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatable.h">
+			<Filter>local_addons\ofxAnimatable\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableFloat.h">
+			<Filter>local_addons\ofxAnimatable\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableOfColor.h">
+			<Filter>local_addons\ofxAnimatable\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableOfPoint.h">
+			<Filter>local_addons\ofxAnimatable\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxAnimatable\src\ofxAnimatableQueue.h">
+			<Filter>local_addons\ofxAnimatable\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxFontStash\src\ofxFontStash.h">
+			<Filter>local_addons\ofxFontStash\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src\fontstash.h">
+			<Filter>local_addons\ofxFontStash\libs\fontstash\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxFontStash\libs\fontstash\src\stb_truetype.h">
+			<Filter>local_addons\ofxFontStash\libs\fontstash\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxScreenSetup\src\ofxScreenSetup.h">
+			<Filter>local_addons\ofxScreenSetup\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxSuperLog\src\ofxSuperLog.h">
+			<Filter>local_addons\ofxSuperLog\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxSuperLog\src\ofxSuperLogDisplay.h">
+			<Filter>local_addons\ofxSuperLog\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGui2dPad.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiButton.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiColorPicker.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiControls.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiFRM.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiGroups.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiLabel.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiMatrix.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiScrollView.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiSlider.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiTextInput.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiTextInputField.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\components\ofxDatGuiTimeGraph.h">
+			<Filter>local_addons\ofxDatGui\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\core\ofxDatGuiComponent.h">
+			<Filter>local_addons\ofxDatGui\src\core</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\core\ofxDatGuiConstants.h">
+			<Filter>local_addons\ofxDatGui\src\core</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\core\ofxDatGuiEvents.h">
+			<Filter>local_addons\ofxDatGui\src\core</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\core\ofxDatGuiIntObject.h">
+			<Filter>local_addons\ofxDatGui\src\core</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\libs\ofxSmartFont\ofxSmartFont.h">
+			<Filter>local_addons\ofxDatGui\src\libs\ofxSmartFont</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\ofxDatGui.h">
+			<Filter>local_addons\ofxDatGui\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\themes\ofxDatGuiTheme.h">
+			<Filter>local_addons\ofxDatGui\src\themes</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxDatGui\src\themes\ofxDatGuiThemes.h">
+			<Filter>local_addons\ofxDatGui\src\themes</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\components\BitmapTextButton.h">
+			<Filter>local_addons\ofxInterface\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\components\LambdaView.h">
+			<Filter>local_addons\ofxInterface\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\components\SolidColorPanel.h">
+			<Filter>local_addons\ofxInterface\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\components\TextureButton.h">
+			<Filter>local_addons\ofxInterface\src\components</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\Node.h">
+			<Filter>local_addons\ofxInterface\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\ofxInterface.h">
+			<Filter>local_addons\ofxInterface\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\TouchEvent.h">
+			<Filter>local_addons\ofxInterface\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\TouchManager.h">
+			<Filter>local_addons\ofxInterface\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxInterface\src\VirtualTouch.h">
+			<Filter>local_addons\ofxInterface\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\Controller.h">
+			<Filter>local_addons\ofxWarp\src\ofxWarp</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpBase.h">
+			<Filter>local_addons\ofxWarp\src\ofxWarp</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpBilinear.h">
+			<Filter>local_addons\ofxWarp\src\ofxWarp</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpPerspective.h">
+			<Filter>local_addons\ofxWarp\src\ofxWarp</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp\WarpPerspectiveBilinear.h">
+			<Filter>local_addons\ofxWarp\src\ofxWarp</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxWarp\src\ofxWarp.h">
+			<Filter>local_addons\ofxWarp\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxJSON\src\ofxJSON.h">
+			<Filter>local_addons\ofxJSON\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include\json\json-forwards.h">
+			<Filter>local_addons\ofxJSON\libs\jsoncpp\include\json</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxJSON\libs\jsoncpp\include\json\json.h">
+			<Filter>local_addons\ofxJSON\libs\jsoncpp\include\json</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxNotificationCenter\src\ofxNotificationCenter.h">
+			<Filter>local_addons\ofxNotificationCenter\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\EdgeBlend.h">
+			<Filter>local_addons\ofxProjectionApp\src\core</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\IDManager.h">
+			<Filter>local_addons\ofxProjectionApp\src\core</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\MainGUI.h">
+			<Filter>local_addons\ofxProjectionApp\src\core</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\Projector.h">
+			<Filter>local_addons\ofxProjectionApp\src\core</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\core\ProjectorManager.h">
+			<Filter>local_addons\ofxProjectionApp\src\core</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\Crop.h">
+			<Filter>local_addons\ofxProjectionApp\src\cropping</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\CroppingManager.h">
+			<Filter>local_addons\ofxProjectionApp\src\cropping</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\cropping\WarpVisual.h">
+			<Filter>local_addons\ofxProjectionApp\src\cropping</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\ExternalAddons\ofxProjectionApp\src\ofxProjectionApp.h">
+			<Filter>local_addons\ofxProjectionApp\src</Filter>
+		</ClInclude>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc" />
+	</ItemGroup>
+</Project>

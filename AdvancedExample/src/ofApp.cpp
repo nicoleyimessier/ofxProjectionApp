@@ -214,13 +214,31 @@ void ofApp::onEveryTouchDown(ofxInterface::TouchEvent &event)
 
 void ofApp::keyPressed(int key){
 
-//	if(key == 'w'){
-//		screenSetup.cycleToNextScreenMode();
-//	}
-//
-//	if(key == 'L'){
-//		ofxSuperLog::getLogger()->setScreenLoggingEnabled(!ofxSuperLog::getLogger()->isScreenLoggingEnabled());
-//	}
+	switch (key)
+	{
+
+	case ('d'):
+	{
+		Global::one().debug = !Global::one().debug;
+		break;
+	}
+	case ('f'):
+	{
+		ofToggleFullscreen();
+		break;
+	}
+	case ('L'):
+	{
+		ofxSuperLog::getLogger()->setScreenLoggingEnabled(!ofxSuperLog::getLogger()->isScreenLoggingEnabled());
+		break;
+	}
+	case ('S'):
+	{
+		screenSetup.cycleToNextScreenMode();
+		break;
+	}
+	default: break;
+	}
 }
 
 

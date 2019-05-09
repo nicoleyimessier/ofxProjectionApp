@@ -124,6 +124,10 @@ protected:
     /*
      Loading
      */
+
+	//!load new settings is to load files on the fly
+	void loadWarpSettings(); 
+	void loadCropSettings(); 
     void loadNewSettings();
     
     /*

@@ -414,3 +414,23 @@ void CroppingManager::updateCropData(CropInfo data, int CropIndex)
 {
     cropData[CropIndex] = data;
 }
+
+void CroppingManager::resizeCropDataVector(int cropSize)
+{
+
+
+	for (int i = cropData.size() - 1; i >= 0; i--) 
+	{
+		cropData.erase(cropData.begin() + i);
+	}
+
+	for (int i = 0; i < cropSize; i++)
+	{
+		CropInfo temp; 
+		cropData.push_back(temp); 
+	}
+
+	ofLogNotice("CroppingManager") << "Resize crop data to " << cropData.size(); 
+	
+
+}

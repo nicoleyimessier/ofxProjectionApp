@@ -17,7 +17,7 @@ public:
     MainGUI();
     ~MainGUI();
     
-    void setup(vector<string> &appStates, string _projectionDirectory);
+    void setup(vector<string> &appStates, string _currentDirectory);
     void update();
     void draw();
     
@@ -90,7 +90,7 @@ private:
      
      fullPath = projectionDirectory + currentDirectory;
      */
-    string projectionDirectory = "";
+    string projectionDirectory = "projections";
     string currentDirectory = "";
 
 };
