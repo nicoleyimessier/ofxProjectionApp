@@ -103,6 +103,7 @@ protected:
      Standard callbacks
      */
     void onMousePressed(ofMouseEventArgs & args);
+    void onKeyReleased(ofKeyEventArgs &args);
     ofImage debugImg;
     bool debugImage = false;
     

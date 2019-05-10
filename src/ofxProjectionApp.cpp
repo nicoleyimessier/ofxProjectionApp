@@ -38,6 +38,7 @@ void ofxProjectionApp::setup(ofFbo * _canvasRef, bool _loadFromFile,  ofVec2f _a
      Set up listeners
      */
     ofAddListener(ofEvents().mousePressed, this, &ofxProjectionApp::onMousePressed);
+    ofAddListener(ofEvents().keyReleased, this, &ofxProjectionApp::onKeyReleased);
     
 }
 
@@ -51,7 +52,9 @@ void ofxProjectionApp::setupWarps()
         glm::vec2 projectorOrigin = glm::vec2(0.0f, 0.0f);
         std:shared_ptr<ofxWarpBase> warp;
         
-        for(int i = 0; i < ProjectorManager::one().projectors.size(); i++)
+        int numProjectors = ProjectorManager::one().projectors.size();
+        
+        for(int i = 0; i <numProjectors ; i++)
         {
             projectorOrigin.x = ProjectorManager::one().projectors[i]->size.x * i;
             
@@ -391,6 +394,24 @@ void ofxProjectionApp::onMousePressed(ofMouseEventArgs & args)
     }
 }
 
+void ofxProjectionApp::onKeyReleased(ofKeyEventArgs &args)
+{
+        if(args.key == 'D')
+        {
+            ofLogNotice("ofxProjectionApp") << "//-------- print warp data --------// ";
+            
+            for(int i=0; i < warpController->getNumWarps(); i++)
+            {
+                auto warp = warpController->getWarp(i);
+                auto bounds = warp->getBounds();
+                
+                ofLogNotice() << "warp#" << i << " (w,h): " << bounds.getWidth() << ", " << bounds.getHeight();
+                ofLogNotice() << "warp#" << i << " (x,y): " << bounds.getX() << ", " << bounds.getY();
+            }
+
+        }
+}
+
 void ofxProjectionApp::onCloseEdgeBlendGui(ofxNotificationCenter::Notification& n)
 {
     string notificationID = n.ID; //the notification ID is available to you
@@ -521,8 +542,9 @@ void ofxProjectionApp::loadNewSettings()
 {
     ofLogNotice("ofxProjectionApp::loadNewSettings") << "Loading settings: " << warpPath << " and " << cropPath;
     
-	loadWarpSettings(); 
-	loadCropSettings(); 
+	loadWarpSettings();
+	
+    loadCropSettings();
    
     
 }
