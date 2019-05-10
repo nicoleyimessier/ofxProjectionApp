@@ -73,7 +73,7 @@ void MainGUI::setup(vector<string> &appStates, string _currentDirectory)
      */
     gui->addSlider(croppingManSize_slider, 0.0f, 5.0f, 1.5f);
     gui->addSlider(cropWidth, 0.0f, 1.0f, 1.0f);
-    gui->addSlider(cropHeight, 0.0f, 1.0f, 1.0f);
+    gui->addSlider(cropHeight, 0.0f, 2.0f, 1.0f);
     gui->addSlider(cropXpos, 0.0f, 1.0f, 1.0f);
     gui->addSlider(cropYpos, 0.0f, 1.0f, 1.0f);
     gui->onSliderEvent(this, &MainGUI::onSliderEvent);
