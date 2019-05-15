@@ -205,10 +205,14 @@ void ofxProjectionApp::update()
     {
         auto warp = warpController->getWarp(i);
         
-        //Edge Blending
-        warp->setGamma(edgeGuis[i]->getGamma());
-        warp->setEdges(edgeGuis[i]->getEdges());
-        warp->setExponent(edgeGuis[i]->getExponent());
+		if (warp && i < edgeGuis.size())
+		{
+			//Edge Blending
+			warp->setGamma(edgeGuis[i]->getGamma());
+			warp->setEdges(edgeGuis[i]->getEdges());
+			warp->setExponent(edgeGuis[i]->getExponent());
+		}
+   
         
     }
 }
