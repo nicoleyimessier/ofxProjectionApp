@@ -208,9 +208,9 @@ void ofxProjectionApp::update()
 		if (warp && i < edgeGuis.size())
 		{
 			//Edge Blending
-			warp->setGamma(edgeGuis[i]->getGamma());
-			warp->setEdges(edgeGuis[i]->getEdges());
-			warp->setExponent(edgeGuis[i]->getExponent());
+			//warp->setGamma(edgeGuis[i]->getGamma());
+			//warp->setEdges(edgeGuis[i]->getEdges());
+			//warp->setExponent(edgeGuis[i]->getExponent());
 		}
    
         
