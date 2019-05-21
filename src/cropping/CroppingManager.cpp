@@ -322,11 +322,13 @@ void CroppingManager::onUpdateXpos(ofxNotificationCenter::Notification&n)
 void CroppingManager::onUpdateYpos(ofxNotificationCenter::Notification&n)
 {
     float yPos_normalized = n.data["cropYpos"];
-    float newYpos = yPos_normalized * canvasSize.x;
+    float newYpos = yPos_normalized * canvasSize.y;
     cropData[activeIndex].pos.y = newYpos;
     
     ofLogNotice("CroppingManager::onUpdateYpos") << "Update warp yPos to " << newYpos;
     // Update crop visual position
+
+    
     cropBoundingBox->setPosition(ofVec2f(cropBoundingBox->getPosition().x,
                                          yPos_normalized*canvasSizeScaled.y + canvasPos.y));
 }

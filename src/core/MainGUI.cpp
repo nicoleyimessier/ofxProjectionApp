@@ -25,6 +25,7 @@ void MainGUI::setup(vector<string> &appStates, string _currentDirectory)
     
     // instantiate and position the gui //
     gui = new ofxDatGui( ofxDatGuiAnchor::TOP_RIGHT );
+    
     gui->setAssetPath("");
     gui->setPosition(0.0f, 0.0f);
     
@@ -72,10 +73,20 @@ void MainGUI::setup(vector<string> &appStates, string _currentDirectory)
      Add slider for cropping manager (i.e. cropping interface) scale
      */
     gui->addSlider(croppingManSize_slider, 0.0f, 5.0f, 1.5f);
+    gui->getSlider(croppingManSize_slider)->setPrecision(4);
+    
     gui->addSlider(cropWidth, 0.0f, 1.0f, 1.0f);
-    gui->addSlider(cropHeight, 0.0f, 2.0f, 1.0f);
+    gui->getSlider(cropWidth)->setPrecision(4);
+    
+    gui->addSlider(cropHeight, 0.0f, 1.0, 1.0f);
+    gui->getSlider(cropHeight)->setPrecision(4);
+    
     gui->addSlider(cropXpos, 0.0f, 1.0f, 1.0f);
+    gui->getSlider(cropXpos)->setPrecision(4);
+    
     gui->addSlider(cropYpos, 0.0f, 1.0f, 1.0f);
+    gui->getSlider(cropYpos)->setPrecision(4);
+    
     gui->onSliderEvent(this, &MainGUI::onSliderEvent);
     
     
@@ -297,10 +308,24 @@ void MainGUI::onSliderEvent(ofxDatGuiSliderEvent e)
         ofxNotificationCenter::Notification mnd;
         mnd.ID = IDManager::one().cropYpos_id;
         mnd.data["cropYpos"] = e.value;
+        ofxNotificationCenter::one().postNotification(IDManager::one().cropYpos_id, mnd);
+        
+        float newHeight = ( 1 - e.value );
+        if((e.value > 0) && ( gui->getSlider(cropHeight)->getValue() > newHeight) || !gui->getSlider(cropHeight)->getValue())
+        {
+            
+            gui->getSlider(cropHeight)->setValue(newHeight);
+            
+            //Send event via notification center
+            ofxNotificationCenter::Notification mnd1;
+            mnd1.ID = IDManager::one().cropHeight_id;
+            mnd1.data["height"] = newHeight;
+            ofxNotificationCenter::one().postNotification(IDManager::one().cropHeight_id, mnd1);
+        }
         
         ofLogNotice("MainGUI::onSliderEvent") << "Updated crop cropYpos scale to: " << e.value;
         
-        ofxNotificationCenter::one().postNotification(IDManager::one().cropYpos_id, mnd);
+      
         
     }
     
