@@ -151,5 +151,7 @@ protected:
     MainGUI * guiMan;
     
     ofxInterface::Node* sceneRef;
+    
+    bool perspective = true;
 };
 

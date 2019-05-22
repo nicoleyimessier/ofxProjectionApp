@@ -60,47 +60,97 @@ void ofxProjectionApp::setupWarps()
             
             for(int j = 0; j < ProjectorManager::one().projectors[i]->numWarps; j++)
             {
-                warp = warpController->buildWarp<ofxWarpBilinear>();
-                
-                warp->setSize(ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps,
-                              ProjectorManager::one().projectors[i]->size.y);
-                
-                //Edges are the alphas?
-                warp->setEdges(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-                warp->setGamma(glm::vec3(100.0f, 100.0f, 100.0f));
-                /*
-                 //Set up control points for each warp such that the warps are distributed
-                 evently across each projector. Assuming that only x pos needs to change
-                 and y positions should span across the entire height of the applicaiton.
-                 */
-                
-                /*
-                 Make sure all values are normalized (i.e 0 to 1) and not the actualy pixel height and pixel width.
-                 */
-                // Top left control point
                 
                 
-                float xPos_l = projectorOrigin.x + (ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps)*j;
-                xPos_l = xPos_l/appSize.x;
-                xPos_l = xPos_l/scaleDenominator;
-                
-                float xPos_r = projectorOrigin.x + (ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps)*(j + 1);
-                xPos_r = xPos_r/appSize.x;
-                xPos_r = xPos_r/scaleDenominator;
-                
-                
-                glm::vec2 tl = glm::vec2(xPos_l, 0.0f);
-                glm::vec2 tr = glm::vec2(xPos_l, 1.0f);
-                glm::vec2 bl = glm::vec2(xPos_r, 0.0f);
-                glm::vec2 br = glm::vec2(xPos_r, 1.0f);
-                
-                
-                warp->setControlPoint(ControlPoints::TOP_LEFT, tl );
-                warp->setControlPoint(ControlPoints::TOP_RIGHT, tr );
-                warp->setControlPoint(ControlPoints::BOTTOM_LEFT,  bl );
-                warp->setControlPoint(ControlPoints::BOTTOM_RIGHT, br );
-                
-                ofLogNotice("ofxProjectionApp") << warpController->getNumWarps() << "-xPos_l, xPos_r: " << xPos_l << " ," << xPos_r;
+                if(perspective)
+                {
+                    warp = warpController->buildWarp<ofxWarpPerspectiveBilinear>();
+                    
+                    warp->setSize(ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps,
+                                  ProjectorManager::one().projectors[i]->size.y);
+                    
+                    //Edges are the alphas?
+                    warp->setEdges(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+                    warp->setGamma(glm::vec3(100.0f, 100.0f, 100.0f));
+                    /*
+                     //Set up control points for each warp such that the warps are distributed
+                     evently across each projector. Assuming that only x pos needs to change
+                     and y positions should span across the entire height of the applicaiton.
+                     */
+                    
+                    /*
+                     Make sure all values are normalized (i.e 0 to 1) and not the actualy pixel height and pixel width.
+                     */
+                    // Top left control point
+                    
+                    
+                    float xPos_l = projectorOrigin.x + (ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps)*j;
+                    xPos_l = xPos_l/appSize.x;
+                    xPos_l = xPos_l/scaleDenominator;
+                    
+                    float xPos_r = projectorOrigin.x + (ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps)*(j + 1);
+                    xPos_r = xPos_r/appSize.x;
+                    xPos_r = xPos_r/scaleDenominator;
+                    
+                    
+                    glm::vec2 tl = glm::vec2(xPos_l, 0.0f);
+                    glm::vec2 tr = glm::vec2(xPos_l, 1.0f);
+                    glm::vec2 bl = glm::vec2(xPos_r, 0.0f);
+                    glm::vec2 br = glm::vec2(xPos_r, 1.0f);
+                    
+                    
+                    warp->setControlPoint(ControlPoints::TOP_LEFT, bl );
+                    warp->setControlPoint(ControlPoints::TOP_RIGHT, tl );
+                    warp->setControlPoint(ControlPoints::BOTTOM_LEFT,  tr );
+                    warp->setControlPoint(ControlPoints::BOTTOM_RIGHT, br );
+                    
+                    ofLogNotice("ofxProjectionApp") << warpController->getNumWarps() << "-xPos_l, xPos_r: " << xPos_l << " ," << xPos_r;
+                }
+                else
+                {
+                    warp = warpController->buildWarp<ofxWarpBilinear>();
+                    
+                    warp->setSize(ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps,
+                                  ProjectorManager::one().projectors[i]->size.y);
+                    
+                    //Edges are the alphas?
+                    warp->setEdges(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+                    warp->setGamma(glm::vec3(100.0f, 100.0f, 100.0f));
+                    /*
+                     //Set up control points for each warp such that the warps are distributed
+                     evently across each projector. Assuming that only x pos needs to change
+                     and y positions should span across the entire height of the applicaiton.
+                     */
+                    
+                    /*
+                     Make sure all values are normalized (i.e 0 to 1) and not the actualy pixel height and pixel width.
+                     */
+                    // Top left control point
+                    
+                    
+                    float xPos_l = projectorOrigin.x + (ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps)*j;
+                    xPos_l = xPos_l/appSize.x;
+                    xPos_l = xPos_l/scaleDenominator;
+                    
+                    float xPos_r = projectorOrigin.x + (ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps)*(j + 1);
+                    xPos_r = xPos_r/appSize.x;
+                    xPos_r = xPos_r/scaleDenominator;
+                    
+                    
+                    glm::vec2 tl = glm::vec2(xPos_l, 0.0f);
+                    glm::vec2 tr = glm::vec2(xPos_l, 1.0f);
+                    glm::vec2 bl = glm::vec2(xPos_r, 0.0f);
+                    glm::vec2 br = glm::vec2(xPos_r, 1.0f);
+                    
+                    
+                    warp->setControlPoint(ControlPoints::TOP_LEFT, tl );
+                    warp->setControlPoint(ControlPoints::TOP_RIGHT, tr );
+                    warp->setControlPoint(ControlPoints::BOTTOM_LEFT,  bl );
+                    warp->setControlPoint(ControlPoints::BOTTOM_RIGHT, br );
+                    
+                    ofLogNotice("ofxProjectionApp") << warpController->getNumWarps() << "-xPos_l, xPos_r: " << xPos_l << " ," << xPos_r;
+                }
+
                 
             }
             
@@ -240,13 +290,13 @@ void ofxProjectionApp::draw()
                 
                 if(!debugImage)
                 {
+                    ofVec2f pos = cropMan->getCropData(i).pos;
+                    ofVec2f size = cropMan->getCropData(i).size;
                     
                     canvasRef->getTexture().drawSubsection(bounds.x, bounds.y,
                                                            bounds.width, bounds.height,
-                                                           cropMan->getCropData(i).pos.x,
-                                                           cropMan->getCropData(i).pos.y,
-                                                           cropMan->getCropData(i).size.x,
-                                                           cropMan->getCropData(i).size.y);
+                                                           pos.x, pos.y,
+                                                           size.x, size.y);
                 }
                 else
                 {
@@ -550,6 +600,6 @@ void ofxProjectionApp::loadNewSettings()
 	
     loadCropSettings();
    
-    
+    //ofToggleFullscreen();
 }
 
