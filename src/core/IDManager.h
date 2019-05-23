@@ -42,6 +42,8 @@ public:
     string cropHeight_id = "cropHeight_id";
     string cropXpos_id = "cropXpos_id";
     string cropYpos_id = "cropYpos_id";
+    string posOfCropInWarp_X_id = "crop_xPos_inWarp_id";
+    string posOfCropInWarp_Y_id = "crop_yPos_inWarp_id";
     
     //These are the IDs that get sent from the Cropping Manager when a new warp visual is clicked and the gui needs to be updated.
     string crop_startInfo_id = "crop_startInfo_id";

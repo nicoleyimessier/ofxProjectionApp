@@ -43,7 +43,7 @@ public:
     /*
      Canvas Reference / crop info
      */
-    void updateCropData(ofVec2f _cropPos, ofVec2f _cropSize);
+    void updateCropData(ofVec2f _cropPos, ofVec2f _cropSize, ofVec2f _drawPos);
     
 private:
     
@@ -60,5 +60,5 @@ private:
     ofFbo *canvasRef;
     ofVec2f cropPos = ofVec2f(0.0f, 0.0f);
     ofVec2f cropSize = ofVec2f(0.0f, 0.0f);
-    
+    ofVec2f drawPos = ofVec2f(0.0f, 0.0f);
 };

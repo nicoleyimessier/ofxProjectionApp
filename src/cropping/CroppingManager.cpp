@@ -75,10 +75,13 @@ void CroppingManager::setup(ofVec2f size, ofVec2f pos, int numCrops, ofFbo *_can
     ofxNotificationCenter::one().addObserver(this, &CroppingManager::onWarpVisualClick, IDManager::one().warpVisual_click_id);
     ofxNotificationCenter::one().addObserver(this, &CroppingManager::onUpdateWidth, IDManager::one().cropWidth_id);
     ofxNotificationCenter::one().addObserver(this, &CroppingManager::onUpdateHeight, IDManager::one().cropHeight_id);
-    ofxNotificationCenter::one().addObserver(this, &CroppingManager::onUpdateXpos, IDManager::one().cropXpos_id);
+    ofxNotificationCenter::one().addObserver(this, &CroppingManager::onUpdateCropXpos, IDManager::one().cropXpos_id);
     
-    ofxNotificationCenter::one().addObserver(this, &CroppingManager::onUpdateYpos, IDManager::one().cropYpos_id);
+    ofxNotificationCenter::one().addObserver(this, &CroppingManager::onUpdateCropYpos, IDManager::one().cropYpos_id);
 
+      ofxNotificationCenter::one().addObserver(this, &CroppingManager::onUpdateXpos, IDManager::one().posOfCropInWarp_X_id);
+      ofxNotificationCenter::one().addObserver(this, &CroppingManager::onUpdateYpos, IDManager::one().posOfCropInWarp_Y_id);
+    
     ofxNotificationCenter::one().addObserver(this, &CroppingManager::onUpdateInterface, IDManager::one().updateCropInterface_id);
     
 }
@@ -104,7 +107,7 @@ void CroppingManager::update(float dt)
 {
     // Update visual warp data
     for(int i = 0; i < warps.size(); i++){
-        warps[i]->updateCropData(cropData[i].pos, cropData[i].size); 
+        warps[i]->updateCropData(cropData[i].pos, cropData[i].size, cropData[i].drawPos);
     }
 }
 
@@ -305,13 +308,13 @@ void CroppingManager::onUpdateHeight(ofxNotificationCenter::Notification& n)
     cropBoundingBox->setSize(ofVec2f(cropBoundingBox->getSize().x, height_normalized*canvasSizeScaled.y));
 }
 
-void CroppingManager::onUpdateXpos(ofxNotificationCenter::Notification&n)
+void CroppingManager::onUpdateCropXpos(ofxNotificationCenter::Notification&n)
 {
     float xPos_normalized = n.data["cropXpos"];
     float newXpos = xPos_normalized * canvasSize.x;
     cropData[activeIndex].pos.x = newXpos;
     
-    ofLogNotice("CroppingManager::onUpdateXpos") << "Update warp xPos to " << newXpos;
+    ofLogNotice("CroppingManager::onUpdateCropXpos") << "Update warp xPos to " << newXpos;
     
     // Update crop visual position
     cropBoundingBox->setPosition(ofVec2f(xPos_normalized*canvasSizeScaled.x + canvasPos.x,
@@ -319,18 +322,34 @@ void CroppingManager::onUpdateXpos(ofxNotificationCenter::Notification&n)
                                  
 }
 
-void CroppingManager::onUpdateYpos(ofxNotificationCenter::Notification&n)
+void CroppingManager::onUpdateCropYpos(ofxNotificationCenter::Notification&n)
 {
     float yPos_normalized = n.data["cropYpos"];
     float newYpos = yPos_normalized * canvasSize.y;
     cropData[activeIndex].pos.y = newYpos;
     
-    ofLogNotice("CroppingManager::onUpdateYpos") << "Update warp yPos to " << newYpos;
+    ofLogNotice("CroppingManager::onUpdateCropYpos") << "Update crop yPos to " << newYpos;
     // Update crop visual position
 
     
     cropBoundingBox->setPosition(ofVec2f(cropBoundingBox->getPosition().x,
                                          yPos_normalized*canvasSizeScaled.y + canvasPos.y));
+}
+
+void CroppingManager::onUpdateXpos(ofxNotificationCenter::Notification& n)
+{
+    float xPos_normalized = n.data["xPos"];
+    cropData[activeIndex].drawPos.x = xPos_normalized;
+    
+    ofLogNotice("CroppingManager::onUpdateXpos") << "Update xPos of crop in warp to " << xPos_normalized;
+}
+
+void CroppingManager::onUpdateYpos(ofxNotificationCenter::Notification& n)
+{
+    float yPos_normalized = n.data["yPos"];
+    cropData[activeIndex].drawPos.y = yPos_normalized;
+    
+    ofLogNotice("CroppingManager::onUpdateYpos") << "Update yPos of crop in warp to " << yPos_normalized;
 }
 
 void CroppingManager::onUpdateInterface(ofxNotificationCenter::Notification&n)

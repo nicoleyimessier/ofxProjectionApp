@@ -67,6 +67,8 @@ private:
     string cropYpos = "Crop YPos";
     string configState = "Configuration State";
     
+    string posOfCropInWarp_X = "X Pos of Crop in Warp";
+    string posOfCropInWarp_Y = "Y Pos of Crop in Warp";
     
     //! Config state management
     vector<string> states;

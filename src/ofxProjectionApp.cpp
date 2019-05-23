@@ -290,12 +290,15 @@ void ofxProjectionApp::draw()
                 
                 if(!debugImage)
                 {
-                    ofVec2f pos = cropMan->getCropData(i).pos;
+                    ofClear(0,0,0,0);
+                    ofVec2f cropPos = cropMan->getCropData(i).pos;
+                    ofVec2f drawPos = ofVec2f(cropMan->getCropData(i).drawPos.x*bounds.width, cropMan->getCropData(i).drawPos.y*bounds.height);
                     ofVec2f size = cropMan->getCropData(i).size;
                     
-                    canvasRef->getTexture().drawSubsection(bounds.x, bounds.y,
+                    canvasRef->getTexture().drawSubsection(bounds.x + drawPos.x,
+                                                           bounds.y + drawPos.y,
                                                            bounds.width, bounds.height,
-                                                           pos.x, pos.y,
+                                                           cropPos.x, cropPos.y,
                                                            size.x, size.y);
                 }
                 else
@@ -392,6 +395,8 @@ void ofxProjectionApp::saveCropJsonData(string fileName)
         cropData[i]["height"] = cropMan->getCropData(i).size.y;
         cropData[i]["xPos"] = cropMan->getCropData(i).pos.x;
         cropData[i]["yPos"] = cropMan->getCropData(i).pos.y;
+        cropData[i]["drawPosX"] = cropMan->getCropData(i).drawPos.x;
+        cropData[i]["drawPosY"] = cropMan->getCropData(i).drawPos.y;
     }
     
     ofLogNotice() << "Saving " << cropData.getRawString();
@@ -566,7 +571,13 @@ void ofxProjectionApp::loadCropSettings()
 				temp.size.y = newCropData[i]["height"].asFloat();
 				temp.pos.x = newCropData[i]["xPos"].asFloat();
 				temp.pos.y = newCropData[i]["yPos"].asFloat();
-
+                
+                if(newCropData[i].isMember("drawPosX"))
+                {
+                    temp.drawPos.x = newCropData[i]["drawPosX"].asFloat();
+                    temp.drawPos.y = newCropData[i]["drawPosY"].asFloat();
+                }
+                
 				cropMan->updateCropData(temp, i);
 
 			}

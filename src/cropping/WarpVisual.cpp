@@ -58,12 +58,20 @@ void WarpVisual::draw()
     /// \param sx Subsection x axis offset within the texture.
     /// \param sy Subsection y axis offset within the texture.
 
+    ofVec2f newSize = ofVec2f(size.x - drawPos.x,
+                                  size.y - drawPos.y);
+    ofVec2f canvasSize = ofVec2f(canvasRef->getTexture().getWidth(),
+                                 canvasRef->getTexture().getHeight());
     
-    canvasRef->getTexture().drawSubsection(0.0f, 0.0f, size.x, size.y,
-                                            cropPos.x,
-                                            cropPos.y,
-                                            cropSize.x,
-                                            cropSize.y);
+    ofVec2f newCropSize = ofVec2f(cropSize.x - drawPos.x/size.x*canvasSize.x,
+                                  cropSize.y - drawPos.y/size.y*canvasSize.y );
+    
+    canvasRef->getTexture().drawSubsection(drawPos.x, drawPos.y,
+                                           newSize.x, newSize.y,
+                                           cropPos.x,
+                                           cropPos.y,
+                                           newCropSize.x,
+                                           newCropSize.y);
 
     
     
@@ -115,10 +123,11 @@ void WarpVisual::onTouchMove(ofxInterface::TouchEvent& event)
 
 #pragma mark CROP INFO
 
-void WarpVisual::updateCropData(ofVec2f _cropPos, ofVec2f _cropSize)
+void WarpVisual::updateCropData(ofVec2f _cropPos, ofVec2f _cropSize, ofVec2f _drawPos)
 {
     cropPos = _cropPos;
     cropSize = _cropSize;
+    drawPos = _drawPos*getSize();
     
 }
 

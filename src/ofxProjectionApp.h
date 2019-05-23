@@ -152,6 +152,6 @@ protected:
     
     ofxInterface::Node* sceneRef;
     
-    bool perspective = true;
+    bool perspective = false;
 };
 

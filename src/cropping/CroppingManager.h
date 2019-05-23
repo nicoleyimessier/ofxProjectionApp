@@ -44,6 +44,8 @@ public:
     void onWarpVisualClick(ofxNotificationCenter::Notification& n);
     void onUpdateWidth(ofxNotificationCenter::Notification& n);
     void onUpdateHeight(ofxNotificationCenter::Notification& n);
+    void onUpdateCropXpos(ofxNotificationCenter::Notification& n);
+    void onUpdateCropYpos(ofxNotificationCenter::Notification& n);
     void onUpdateXpos(ofxNotificationCenter::Notification& n);
     void onUpdateYpos(ofxNotificationCenter::Notification& n);
     void onUpdateInterface(ofxNotificationCenter::Notification& n);
@@ -53,7 +55,8 @@ public:
      */
     struct CropInfo
     {
-        ofVec2f pos = ofVec2f(0.0f, 0.0f);
+        ofVec2f pos = ofVec2f(0.0f, 0.0f); //pos is the position of the crop within the actually canvas
+        ofVec2f drawPos = ofVec2f(0.0f, 0.0f); //drawPos is a normalized value for the position of drawing the crop within the warp 
         ofVec2f size = ofVec2f(100.0f, 100.0f);
         int index = 0;
     };

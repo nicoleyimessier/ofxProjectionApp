@@ -87,6 +87,14 @@ void MainGUI::setup(vector<string> &appStates, string _currentDirectory)
     gui->addSlider(cropYpos, 0.0f, 1.0f, 1.0f);
     gui->getSlider(cropYpos)->setPrecision(4);
     
+    gui->addSlider(posOfCropInWarp_X, 0.0f, 1.0f, 0.0f);
+    gui->getSlider(posOfCropInWarp_X)->setPrecision(4);
+
+    
+    gui->addSlider(posOfCropInWarp_Y, 0.0f, 1.0f, 0.0f);
+    gui->getSlider(posOfCropInWarp_Y)->setPrecision(4);
+
+    
     gui->onSliderEvent(this, &MainGUI::onSliderEvent);
     
     
@@ -322,12 +330,33 @@ void MainGUI::onSliderEvent(ofxDatGuiSliderEvent e)
             mnd1.data["height"] = newHeight;
             ofxNotificationCenter::one().postNotification(IDManager::one().cropHeight_id, mnd1);
         }
-        
         ofLogNotice("MainGUI::onSliderEvent") << "Updated crop cropYpos scale to: " << e.value;
         
-      
+    }
+    else if(e.target->getLabel() == ofToUpper(posOfCropInWarp_X))
+    {
+        //Send event via notification center
+        ofxNotificationCenter::Notification mnd;
+        mnd.ID = IDManager::one().posOfCropInWarp_X_id;
+        mnd.data["xPos"] = e.value;
+        
+        ofLogNotice("MainGUI::onSliderEvent") << "Updated x_position of crop: " << e.value;
+        
+        ofxNotificationCenter::one().postNotification(IDManager::one().posOfCropInWarp_X_id, mnd);
         
     }
+    else if(e.target->getLabel() == ofToUpper(posOfCropInWarp_Y))
+    {
+        //Send event via notification center
+        ofxNotificationCenter::Notification mnd;
+        mnd.ID = IDManager::one().posOfCropInWarp_Y_id;
+        mnd.data["yPos"] = e.value;
+        
+        ofLogNotice("MainGUI::onSliderEvent") << "Updated y_position of crop: " << e.value;
+        
+        ofxNotificationCenter::one().postNotification(IDManager::one().posOfCropInWarp_Y_id, mnd);
+    }
+
     
     
 }
