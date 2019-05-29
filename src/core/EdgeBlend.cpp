@@ -30,18 +30,31 @@ void EdgeBlend::setup(int _index)
     gui->setVisible(false);
     
     //Add gamma sliders
-    gui->addSlider(gammaR_lab, 0.0f, 100.0f, 100.0f);
-    gui->addSlider(gammaB_lab, 0.0f, 100.0f, 100.0f);
-    gui->addSlider(gammaG_lab, 0.0f, 100.0f, 100.0f);
+    gui->addSlider(gammaR_lab, 0.0f, 100.0f, 50.0f);
+	gui->getSlider(gammaR_lab)->setPrecision(4);
+
+    gui->addSlider(gammaB_lab, 0.0f, 100.0f, 50.0f);
+	gui->getSlider(gammaB_lab)->setPrecision(4);
+
+    gui->addSlider(gammaG_lab, 0.0f, 100.0f, 50.0f);
+	gui->getSlider(gammaG_lab)->setPrecision(4);
     
     //Add edge sliders
     gui->addSlider(edgeX_lab, 0.0f, 1.0f, 1.0f);
+	gui->getSlider(edgeX_lab)->setPrecision(4);
+
     gui->addSlider(edgeY_lab, 0.0f, 1.0f, 1.0f);
+	gui->getSlider(edgeY_lab)->setPrecision(4);
+
     gui->addSlider(edgeZ_lab, 0.0f, 1.0f, 1.0f);
+	gui->getSlider(edgeZ_lab)->setPrecision(4);
+
     gui->addSlider(edgeW_lab, 0.0f, 1.0f, 1.0f);
+	gui->getSlider(edgeW_lab)->setPrecision(4);
+
     
     //Add exponenet slider
-    gui->addSlider(exponent_lab, 1.0f, 5.0f, 1.0f);
+    gui->addSlider(exponent_lab, 0.0f, 5.0f, 1.0f);
     
     //Add close button
     gui->addButton(close_lab);

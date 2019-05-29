@@ -98,12 +98,18 @@ void ofxProjectionApp::setupWarps()
                     glm::vec2 bl = glm::vec2(xPos_r, 0.0f);
                     glm::vec2 br = glm::vec2(xPos_r, 1.0f);
                     
-                    
+					warp->setControlPoint(ControlPoints::TOP_LEFT, tl);
+					warp->setControlPoint(ControlPoints::TOP_RIGHT, bl);
+					warp->setControlPoint(ControlPoints::BOTTOM_LEFT, br);
+					warp->setControlPoint(ControlPoints::BOTTOM_RIGHT, tr);
+
+					/*
                     warp->setControlPoint(ControlPoints::TOP_LEFT, bl );
                     warp->setControlPoint(ControlPoints::TOP_RIGHT, tl );
                     warp->setControlPoint(ControlPoints::BOTTOM_LEFT,  tr );
                     warp->setControlPoint(ControlPoints::BOTTOM_RIGHT, br );
-                    
+                    */
+
                     ofLogNotice("ofxProjectionApp") << warpController->getNumWarps() << "-xPos_l, xPos_r: " << xPos_l << " ," << xPos_r;
                 }
                 else
@@ -455,20 +461,37 @@ void ofxProjectionApp::onMousePressed(ofMouseEventArgs & args)
 
 void ofxProjectionApp::onKeyReleased(ofKeyEventArgs &args)
 {
-        if(args.key == 'D')
-        {
-            ofLogNotice("ofxProjectionApp") << "//-------- print warp data --------// ";
-            
-            for(int i=0; i < warpController->getNumWarps(); i++)
-            {
-                auto warp = warpController->getWarp(i);
-                auto bounds = warp->getBounds();
-                
-                ofLogNotice() << "warp#" << i << " (w,h): " << bounds.getWidth() << ", " << bounds.getHeight();
-                ofLogNotice() << "warp#" << i << " (x,y): " << bounds.getX() << ", " << bounds.getY();
-            }
+	switch (args.key)
 
-        }
+	{
+	case 'D': 
+	{
+		ofLogNotice("ofxProjectionApp") << "//-------- print warp data --------// ";
+
+		for (int i = 0; i < warpController->getNumWarps(); i++)
+		{
+			auto warp = warpController->getWarp(i);
+			auto bounds = warp->getBounds();
+
+			ofLogNotice() << "warp#" << i << " (w,h): " << bounds.getWidth() << ", " << bounds.getHeight();
+			ofLogNotice() << "warp#" << i << " (x,y): " << bounds.getX() << ", " << bounds.getY();
+		}
+		break; 
+	}
+	case 'u':
+	{
+
+		ofLogNotice("ofxProjectionApp") << "unselect control points"; 
+
+		for (int i = 0; i < warpController->getNumWarps(); i++)
+		{
+			auto warp = warpController->getWarp(i);
+			warp->deselectControlPoints(); 
+		}
+	}
+	default: break; 
+	}
+      
 }
 
 void ofxProjectionApp::onCloseEdgeBlendGui(ofxNotificationCenter::Notification& n)
