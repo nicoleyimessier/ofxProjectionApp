@@ -318,6 +318,7 @@ void MainGUI::onSliderEvent(ofxDatGuiSliderEvent e)
         mnd.data["cropYpos"] = e.value;
         ofxNotificationCenter::one().postNotification(IDManager::one().cropYpos_id, mnd);
         
+		/*
         float newHeight = ( 1 - e.value );
         if((e.value > 0) && ( gui->getSlider(cropHeight)->getValue() > newHeight) || !gui->getSlider(cropHeight)->getValue())
         {
@@ -330,6 +331,7 @@ void MainGUI::onSliderEvent(ofxDatGuiSliderEvent e)
             mnd1.data["height"] = newHeight;
             ofxNotificationCenter::one().postNotification(IDManager::one().cropHeight_id, mnd1);
         }
+		*/
         ofLogNotice("MainGUI::onSliderEvent") << "Updated crop cropYpos scale to: " << e.value;
         
     }

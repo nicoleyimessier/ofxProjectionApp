@@ -129,12 +129,13 @@ void CroppingManager::draw()
      */
     for(int i = 0; i < scaledProjectors.size(); i++)
     {
-
+		
         ofSetColor(ofColor::green);
         ofSetLineWidth(10.0f);
         ofNoFill();
         ofDrawRectangle(scaledProjectors[i]->pos.x, scaledProjectors[i]->pos.y,
                         scaledProjectors[i]->size.x, scaledProjectors[i]->size.y);
+
         
         ofSetColor(ofColor::black);
         ofFill();
@@ -454,4 +455,17 @@ void CroppingManager::resizeCropDataVector(int cropSize)
 	ofLogNotice("CroppingManager") << "Resize crop data to " << cropData.size(); 
 	
 
+}
+
+#pragma mark UTILS
+
+void CroppingManager::drawOutline(ofVec2f pos, ofVec2f size)
+{
+	float delta = 50.0f; 
+	ofSetColor(ofColor::green); 
+
+	ofDrawRectangle(pos.x - delta, pos.y - delta, size.x + 2*delta, delta);
+	ofDrawRectangle(pos.x + size.x, pos.y - delta, delta, size.y + 2*delta); 
+	ofDrawRectangle(pos.x - delta, pos.y - delta, delta, size.y + 2*delta); 
+	ofDrawRectangle(pos.x - delta, pos.y + size.y, size.x + 2*delta, delta);
 }

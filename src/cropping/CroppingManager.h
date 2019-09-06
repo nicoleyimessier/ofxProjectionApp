@@ -127,8 +127,8 @@ private:
     void calculateBoundingBoxAttributes(int warpIndex);
     
     /*
-     CropData
+     Utils
      */
-
+	void drawOutline(ofVec2f pos, ofVec2f size); 
 };
 

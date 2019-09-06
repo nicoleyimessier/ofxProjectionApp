@@ -61,4 +61,10 @@ private:
     ofVec2f cropPos = ofVec2f(0.0f, 0.0f);
     ofVec2f cropSize = ofVec2f(0.0f, 0.0f);
     ofVec2f drawPos = ofVec2f(0.0f, 0.0f);
+
+	/*
+	UTILS
+	*/
+
+	void drawOutline(ofVec2f pos, ofVec2f size);
 };

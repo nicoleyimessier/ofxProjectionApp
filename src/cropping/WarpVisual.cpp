@@ -40,14 +40,6 @@ void WarpVisual::update(float dt)
 
 void WarpVisual::draw()
 {
-    if(active)
-    {
-        //Draw a border when the warp is actively changing the crop data
-        
-        ofSetColor(ofColor::gray);
-        ofNoFill();
-        ofDrawRectangle(0.0f, 0.0f, size.x, size.y);
-    }
     
     ofSetColor(255.0f);
     
@@ -74,7 +66,11 @@ void WarpVisual::draw()
                                            newCropSize.y);
 
     
-    
+	if (active)
+	{
+		//Draw a border when the warp is actively changing the crop data
+		drawOutline(ofVec2f(0.0f, 0.0f), ofVec2f(size.x, size.y));
+	}
     
     
 }
@@ -84,6 +80,8 @@ void WarpVisual::draw()
 void WarpVisual::setActive(bool _active)
 {
     active = _active;
+
+	(active) ? setPlane(10) : setPlane(0); 
     
 }
 
@@ -129,5 +127,18 @@ void WarpVisual::updateCropData(ofVec2f _cropPos, ofVec2f _cropSize, ofVec2f _dr
     cropSize = _cropSize;
     drawPos = _drawPos*getSize();
     
+}
+
+#pragma mark UTILS
+
+void WarpVisual::drawOutline(ofVec2f pos, ofVec2f size)
+{
+	float delta = 20.0f;
+	ofSetColor(ofColor::green);
+
+	ofDrawRectangle(pos.x - delta, pos.y - delta, size.x + 2 * delta, delta);
+	ofDrawRectangle(pos.x + size.x, pos.y - delta, delta, size.y + 2 * delta);
+	ofDrawRectangle(pos.x - delta, pos.y - delta, delta, size.y + 2 * delta);
+	ofDrawRectangle(pos.x - delta, pos.y + size.y, size.x + 2 * delta, delta);
 }
 

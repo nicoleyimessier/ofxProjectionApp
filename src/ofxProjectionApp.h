@@ -56,6 +56,12 @@ public:
     void setCropManagerVisible(bool visiblity);
     void setMainGuiVisible(bool visibility);
     
+	/*
+	Warping
+	*/
+	void toggleEditingWarpsOff(); 
+
+
 protected:
     /*
      Warping

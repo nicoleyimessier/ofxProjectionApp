@@ -637,3 +637,9 @@ void ofxProjectionApp::loadNewSettings()
     //ofToggleFullscreen();
 }
 
+#pragma mark WARPS
+
+void ofxProjectionApp::toggleEditingWarpsOff()
+{
+	warpController->turnEditingOff(); 
+}
