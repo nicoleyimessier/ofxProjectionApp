@@ -54,11 +54,12 @@ void ofxProjectionApp::setupWarps()
         
         int numProjectors = ProjectorManager::one().projectors.size();
         
-        for(int i = 0; i <numProjectors ; i++)
+        for(int i = 0; i < numProjectors ; i++)
         {
             projectorOrigin.x = ProjectorManager::one().projectors[i]->size.x * i;
             
-            for(int j = 0; j < ProjectorManager::one().projectors[i]->numWarps; j++)
+            int _numWarps = ProjectorManager::one().projectors[i]->numWarps;
+            for(int j = 0; j < _numWarps; j++)
             {
                 
                 
@@ -110,7 +111,7 @@ void ofxProjectionApp::setupWarps()
                     warp->setControlPoint(ControlPoints::BOTTOM_RIGHT, br );
                     */
 
-                    ofLogNotice("ofxProjectionApp") << warpController->getNumWarps() << "-xPos_l, xPos_r: " << xPos_l << " ," << xPos_r;
+                    ofLogNotice("ofxProjectionApp") << "warpNum-#" << warpController->getNumWarps() << "-xPos_l, xPos_r: " << xPos_l << " ," << xPos_r;
                 }
                 else
                 {
@@ -211,6 +212,7 @@ void ofxProjectionApp::setupCroppingManager()
      Cropping Manager
      */
     cropMan = new CroppingManager();
+    //ofVec2f size, ofVec2f pos, int numCrops, ofFbo *_canvasRef
     cropMan->setup(appSize*guiMan->getCropSize(), ofVec2f(0,0), warpController->getNumWarps(), canvasRef);
     cropMan->setVisible(false);
     sceneRef->addChild(cropMan);
@@ -393,7 +395,7 @@ void ofxProjectionApp::clearCropJsonData()
 void ofxProjectionApp::saveCropJsonData(string fileName)
 {
     
-    
+    //NEED TO DO:
     for(int i = 0; i < cropMan->getCropDataSize(); i++)
     {
         cropData[i]["warpID"] = cropMan->getCropData(i).index;
