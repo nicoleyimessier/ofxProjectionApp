@@ -75,7 +75,7 @@ The intended workflow is to have a one to one setup of your intended system. Fro
 
  ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/ControlPoint.png)
  
-##Edge Blending
+## Edge Blending
  
 Each warp has its own edge blending panel. 
 
@@ -108,7 +108,6 @@ To load old settings:
 
 ### Configurable
 
-### 
 
 ## Quick Setup Guide 
 	
