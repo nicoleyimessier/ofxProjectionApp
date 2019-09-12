@@ -20,6 +20,7 @@ The intended process is to draw your app into an FBO that acts as your canvas, a
 ## Class Overview
 ofxProjectionApp is more of a template then a singular addon with one function; this results in a lot of moving parts. Below is a WIP diagram of the overall class structure.
 
+![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/Diagrams/HighLevelClasses.png)
 
 
 ## Quick Setup Guide 
@@ -160,13 +161,13 @@ Once you are in warp editing mode:
 
 For Bilinear warps only:
 
-* m to toggle between linear and curved mapping
-* F1 to reduce the number of horizontal control points
-* F2 to increase the number of horizontal control points
-* F3 to reduce the number of vertical control points
-* F4 to increase the number of vertical control points
-* F5 to decrease the mesh resolution
-* F6 to increase the mesh resolution
+* `m`: to toggle between linear and curved mapping
+* `F1`: to reduce the number of horizontal control points
+* `F2`: to increase the number of horizontal control points
+* `F3`: to reduce the number of vertical control points
+* `F4`: to increase the number of vertical control points
+* `F5`: to decrease the mesh resolution
+* `F6`: to increase the mesh resolution
 
 ## Class Overview
 
