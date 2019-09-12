@@ -12,7 +12,7 @@ The intended process is to draw your app into an FBO that acts as your canvas, a
 * [ofxNotificationCenter](https://github.com/local-projects/ofxNotificationCenter): addon to send and receive messages to a an application wide
 * Saves and loads projection settings dynamically
 
-##Compatibility
+## Compatibility
 * openFrameworks 0.9 and up
 * OpenGL 3 and up (programmable pipeline)
 * The included shaders only work with normalized textures (GL_TEXTURE_2D) but can be easily modified to work with rectangle textures 
