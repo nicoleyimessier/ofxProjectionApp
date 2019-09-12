@@ -15,13 +15,100 @@ The intended process is to draw your app into an FBO that acts as your canvas, a
 ##Compatibility
 * openFrameworks 0.9 and up
 * OpenGL 3 and up (programmable pipeline)
-* The included shaders only work with normalized textures (GL_TEXTURE_2D) but can be easily modified to work with rectangle textures
+* The included shaders only work with normalized textures (GL_TEXTURE_2D) but can be easily modified to work with rectangle textures 
 
 ## Class Overview
 ofxProjectionApp is more of a template then a singular addon with one function; this results in a lot of moving parts. Below is a WIP diagram of the overall class structure.
 
 ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/Diagrams/HighLevelClasses.png)
 
+* `ofxProjectionApp`: overall projection manager 
+* `MainGUI`: GUI used to save settings, load settings, change state, and adjust crop settings
+* `CanvasRef`: a pointer to the FBO that you should draw your canvas or scene into
+* `WarpController`: manager for all warps
+* `CroppingManager`: cropping manager that displays scaled versions of the canvas and crops within each warp
+* `EdgeBlend`: each warp has it's own edge blend GUI that is divorced from the warpcontroller 
+
+Because many of these classes need the same information, there are a number of singletons in the application:
+
+* `IDManager`: holdes IDs that are used in `ofxNotificationCenter` and are needed across multiple 
+* `ProjectorManager`: holds all of the projector specs including order, resolution, number of warps. This information is used to setup information in the `CroppingManager` and other parts of the codebase. **NOTE:** the specs passed to the `ProjectorManager`need to be representative of your actual setup. For example, if you have an initial configuration such that the application is set to have one projector with 2 warps, and then load in projection settings that have 4 warps -- the information across the  `ProjectorManager`, `CroppingManager`, and `WarpController` will be different. Yes, it would be nice to have it work the other way and it's under possible future features. 
+
+## Intended Workflow
+
+The intended workflow is to have a one to one setup of your intended system. From there the steps should be: 
+
+1. Set up `ProjectorManager` with the appropriate number of warps and projectors.
+2. Load file to the one to one setup.
+3. Adjust crops in each crop.
+4. Adjust warps.
+5. Save files.
+
+, if you need a projection set up with 3 X 4k monitors and 2 warps in each projector, you need to: . If you need to be able to access your application out of a projeciton set up, I suggest that you 
+
+## Adjust Crops
+
+1. To adjust the crop of the canvas drawn in a specific warp, click on the drop down menu ‘Configuration State’ and click `Crop Configuration`.
+2.  A new GUI will pop up that may be too big to see, you can change the size of the GUI by adjusting the `CROPPING INTERFACE` slider. Below is an image of the GUI. 
+
+ ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/CroppingState.png)
+ 
+ 3. To edit a specific warp, click on the warp visual and it will highlight. 
+ 4. Once a warp is highlighted, use the GUI variables to edit the size, position of the crop. To adjust the size and position of the crop within the canvas, use the sliders in the main GUI labeled “CROP WIDTH”, “CROP HEIGHT”, “CROP XPOS”, and “CROP YPOS”. Note that the red rectangle represents the crop of the canvas that is drawn in the warp.
+ 5. To adjust the position of the crop within the warp, change the sliders corresponding to “X POS OF CROP IN WARP” and “Y POS OF CROP IN WARP”
+
+
+ ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/CroppingState2.png)
+ 
+
+## Editing Warps
+
+1. Click on the configuration state “WARP CONFIGURATION”
+2. Press ‘w’ which toggles warp editing on and off. This will come in handy when you have a lot of points to edit in the mesh. 
+3. To select a warp, press alt + left-click over the warp. Each warp has a default control point at each corner.
+4. Press F1 to reduce the number of horizontal control points
+5. Press F2 to increase the number of horizontal control points
+6. Press F3 to reduce the number of vertical control points
+7. Press F4 to increase the number of vertical control points
+8. To move a control point, click on it and it will turn green. Note that you can activate multiple control points to move at once. 
+9. To unselect a control point, click on it while holding shift down. 
+
+ ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/ControlPoint.png)
+ 
+##Edge Blending
+ 
+Each warp has its own edge blending panel. 
+
+To open the panel: 
+
+1. Click on the configuration state “WARP CONFIGURATION”
+2. Press ‘w’ which toggles warp editing on and off. This will come in handy when you have a lot of points to edit in the mesh. 
+3. To select a warp, press alt + left-click over the warp. Each warp has a default control point at each corner.
+4. Right click on the warp and a new GUI will appear with the controls for edge blending.  
+
+ ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/EdgeBlend.png)
+
+## Saving Projection Settings
+
+To save new settings: 
+
+1. Enter the filename in the MAIN GUI under “PROJECTION SETTINGS” and click save settings. 
+
+
+## Loading Projection Settings
+
+To load old settings: 
+
+1. Click the drop down under “PROJECTION SETTINGS” and click on the desired file. 
+2. You can also edit the AppSettings.json file to load a specific file on startup by editing: 
+
+"loadFromFile": true,
+"directoryPath": "projections/TEST"
+
+
+### Configurable
+
+### 
 
 ## Quick Setup Guide 
 	
@@ -169,5 +256,7 @@ For Bilinear warps only:
 * `F5`: to decrease the mesh resolution
 * `F6`: to increase the mesh resolution
 
-## Class Overview
+## Future Features
+
+* Add warps on the fly
 
