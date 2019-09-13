@@ -9,10 +9,10 @@
     "EBD7FB982A0049C7DE1505271CBD84CFD9981CB8" : 9223372036854775807,
     "0EA174C8D5453C4CA157AC842D0E9AA05FC864F8" : 9223372036854775807,
     "A9EB116B24E1E187292E7D55C8A151A6DEA16570" : 9223372036854775807,
+    "E5ED91FF8F0093E79C62BC6BA81D11E545B5C0EE" : 9223372036854775807,
     "B090D3E72F2C83A91517EC3C9E4CDCB5FAFED065" : 9223372036854775807,
     "E783C90C8B9A3975360A859C4F0A4C80DBCA02E1" : 9223372036854775807,
     "9B16984896B950513C045C698844FAD6DC7FF732" : 9223372036854775807,
-    "81542BDCFA735DD86790D0856DF6692972DDF069" : 9223372036854775807,
     "2DE9C8846D9375EAACFABA8963120E8E7719BAF5" : 9223372036854775807,
     "960DBC31F6BD70B20C31473C6C44C55FD84A406D" : 9223372036854775807,
     "9233F0F4A2BE011BD468E5177A5AD6623263B23D" : 9223372036854775807,
@@ -27,10 +27,10 @@
     "EBD7FB982A0049C7DE1505271CBD84CFD9981CB8" : "ofxWarp\/",
     "0EA174C8D5453C4CA157AC842D0E9AA05FC864F8" : "ofxScreenSetup\/",
     "A9EB116B24E1E187292E7D55C8A151A6DEA16570" : "ofxTimeMeasurements\/",
+    "E5ED91FF8F0093E79C62BC6BA81D11E545B5C0EE" : "..",
     "B090D3E72F2C83A91517EC3C9E4CDCB5FAFED065" : "ofxSuperLog\/",
     "E783C90C8B9A3975360A859C4F0A4C80DBCA02E1" : "ofxNotificationCenter\/",
     "9B16984896B950513C045C698844FAD6DC7FF732" : "ofxRemoteUI\/",
-    "81542BDCFA735DD86790D0856DF6692972DDF069" : "..",
     "2DE9C8846D9375EAACFABA8963120E8E7719BAF5" : "..\/OpenFrameworks",
     "960DBC31F6BD70B20C31473C6C44C55FD84A406D" : "ofxProjectionApp\/",
     "9233F0F4A2BE011BD468E5177A5AD6623263B23D" : "ofxDatGui\/",
@@ -68,11 +68,6 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5DB7C332A3A89035E93556A2A38BF414005BA671"
     },
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.assembla.com:fldc.stereo-tracking.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "81542BDCFA735DD86790D0856DF6692972DDF069"
-    },
-    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/local-projects\/ofxDatGui.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9233F0F4A2BE011BD468E5177A5AD6623263B23D"
@@ -101,6 +96,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/local-projects\/ofxSuperLog.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B090D3E72F2C83A91517EC3C9E4CDCB5FAFED065"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.assembla.com:fldc.stereo-tracking.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E5ED91FF8F0093E79C62BC6BA81D11E545B5C0EE"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/local-projects\/ofxNotificationCenter.git",

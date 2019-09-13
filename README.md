@@ -102,9 +102,10 @@ To load old settings:
 1. Click the drop down under “PROJECTION SETTINGS” and click on the desired file. 
 2. You can also edit the AppSettings.json file to load a specific file on startup by editing: 
 
+```
 "loadFromFile": true,
 "directoryPath": "projections/TEST"
-
+```
 
 ### Configurable
 
@@ -258,4 +259,3 @@ For Bilinear warps only:
 ## Future Features
 
 * Add warps on the fly
-
