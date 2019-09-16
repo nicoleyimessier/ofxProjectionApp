@@ -84,7 +84,7 @@ protected:
     /*
      Projector Data
      */
-    string warpDataFileName = "PROJECTION_SETTINGS";
+    string warpDataFileName = "WARP_SETTINGS.json";
     
     /*
      Canvas Size
