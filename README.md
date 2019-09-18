@@ -2,7 +2,9 @@
 
 ofxProjectionApp is a basic template for a projection mapping system using a variety of different addons to simplify getting a projection mapping system up quickly. 
 
-The intended process is to draw your app into an FBO that acts as your canvas, and once you are ready to projection, use this setup. Note that the application does not do any scaling; therefore, if you tell the application to draw three warps at 4k and run your application at 
+The intended process is to draw your app into an FBO that acts as your canvas, and once you are ready to projection, use this setup. Note that the application does not do any scaling; therefore, if you tell the application to draw three warps at 4k and run your application at HD, you will not see everything.
+
+**NOTE** Much of this documentaiton follows the advanced example. 
 
 ## Feature List / Addons Needed
 
@@ -32,19 +34,24 @@ ofxProjectionApp is more of a template then a singular addon with one function; 
 Because many of these classes need the same information, there are a number of singletons in the application:
 
 * `IDManager`: holdes IDs that are used in `ofxNotificationCenter` and are needed across multiple 
-* `ProjectorManager`: holds all of the projector specs including order, resolution, number of warps. This information is used to setup information in the `CroppingManager` and other parts of the codebase. **NOTE:** the specs passed to the `ProjectorManager`need to be representative of your actual setup. For example, if you have an initial configuration such that the application is set to have one projector with 2 warps, and then load in projection settings that have 4 warps -- the information across the  `ProjectorManager`, `CroppingManager`, and `WarpController` will be different. Yes, it would be nice to have it work the other way and it's under possible future features. 
+* `ProjectorManager`: holds all of the projector specs including order, resolution, number of warps. This information is used to setup information in the `CroppingManager` and other parts of the codebase. 
+
+
+**NOTE:** There are two ways the ProjectorManager gets set up:
+
+1. If you load in preconfigured projection settings on startup, the ProjectorManager will automatically set up. 
+2. If you are starting without any preconfigured projection settings (which will be the case before you set your rig up), you need to set up the ProjectorManager yourself. 
 
 ## Intended Workflow
 
 The intended workflow is to have a one to one setup of your intended system. From there the steps should be: 
 
 1. Set up `ProjectorManager` with the appropriate number of warps and projectors.
-2. Load file to the one to one setup.
-3. Adjust crops in each crop.
-4. Adjust warps.
+2. Load projector settings that represent a one to one setup of the actual rig.
+3. Adjust the crops that are drawn in each warp.
+4. Adjust the control points and edge blend settings of each warp.
 5. Save files.
-
-, if you need a projection set up with 3 X 4k monitors and 2 warps in each projector, you need to: . If you need to be able to access your application out of a projeciton set up, I suggest that you 
+6. Once steps 1-5 are complete, you can simply load in your preconfigured projection settings on app start up.
 
 ## Adjust Crops
 
@@ -54,7 +61,7 @@ The intended workflow is to have a one to one setup of your intended system. Fro
  ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/CroppingState.png)
  
  3. To edit a specific warp, click on the warp visual and it will highlight. 
- 4. Once a warp is highlighted, use the GUI variables to edit the size, position of the crop. To adjust the size and position of the crop within the canvas, use the sliders in the main GUI labeled “CROP WIDTH”, “CROP HEIGHT”, “CROP XPOS”, and “CROP YPOS”. Note that the red rectangle represents the crop of the canvas that is drawn in the warp.
+ 4. Once a warp is highlighted, use the GUI variables to edit the size and position of the crop. To adjust the size and position of the crop within the canvas, use the sliders in the main GUI labeled “CROP WIDTH”, “CROP HEIGHT”, “CROP XPOS”, and “CROP YPOS”. Note that the red rectangle represents the crop of the canvas that is drawn into the warp.
  5. To adjust the position of the crop within the warp, change the sliders corresponding to “X POS OF CROP IN WARP” and “Y POS OF CROP IN WARP”
 
 
@@ -71,7 +78,7 @@ The intended workflow is to have a one to one setup of your intended system. Fro
 6. Press F3 to reduce the number of vertical control points
 7. Press F4 to increase the number of vertical control points
 8. To move a control point, click on it and it will turn green. Note that you can activate multiple control points to move at once. 
-9. To unselect a control point, click on it while holding shift down. 
+9. To unselect a control point, click on it while holding shift. 
 
  ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/ControlPoint.png)
  
@@ -82,8 +89,8 @@ Each warp has its own edge blending panel.
 To open the panel: 
 
 1. Click on the configuration state “WARP CONFIGURATION”
-2. Press ‘w’ which toggles warp editing on and off. This will come in handy when you have a lot of points to edit in the mesh. 
-3. To select a warp, press alt + left-click over the warp. Each warp has a default control point at each corner.
+2. Press ‘w’ which toggles warp editing on and off. 
+3. To select a warp, press alt + left-click over the warp. 
 4. Right click on the warp and a new GUI will appear with the controls for edge blending.  
 
  ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/EdgeBlend.png)
@@ -100,14 +107,15 @@ To save new settings:
 To load old settings: 
 
 1. Click the drop down under “PROJECTION SETTINGS” and click on the desired file. 
-2. You can also edit the AppSettings.json file to load a specific file on startup by editing: 
+2. You can also pass in your own file path to load specific settings onstart up. Following the Advavanced example, edit the AppSettings.json file to load a specific file on startup by editing: 
 
 ```
 "loadFromFile": true,
 "directoryPath": "projections/TEST"
 ```
 
-### Configurable
+**NOTE:** you can currently add warps to your initial setup, but you cannot remove any. For example, if you start with one projector and 1 warp, you can then load in a file with 4 warps, this will work. However, you can not start with a setup that has 4 warps and load in a file with 2 warps. "Removing Warps" is in the added features.
+
 
 
 ## Quick Setup Guide 
@@ -258,4 +266,4 @@ For Bilinear warps only:
 
 ## Future Features
 
-* Add warps on the fly
+* Remove warps on the fly
