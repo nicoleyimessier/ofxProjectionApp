@@ -187,8 +187,6 @@ void CroppingManager::caclulateProjectorAttributes()
         scaledProjectors[i]->pos.x = projector_xPos;
         
         projector_xPos += scaledProjectors[i]->size.x;
-        
-        
     }
 }
 
@@ -451,10 +449,77 @@ void CroppingManager::resizeCropDataVector(int cropSize)
 		CropInfo temp; 
 		cropData.push_back(temp); 
 	}
+    
+}
 
-	ofLogNotice("CroppingManager") << "Resize crop data to " << cropData.size(); 
-	
 
+void CroppingManager::resizeWarpsBasedOffCropData()
+{
+    if( cropData.size() > warps.size() )
+    {
+        
+        int diff = cropData.size() - warps.size();
+        
+        for(int i = 0; i < diff; i++)
+        {
+            
+            int numCrops = warps.size();
+            
+            WarpVisual *temp  = new WarpVisual();
+            temp->setup(ofVec2f(0.0f, 0.0f), ofVec2f(0.0f, 0.0f), numCrops);
+            temp->setCanvasReference(canvasRef);
+            addChild(temp);
+            temp->setVisible(true);
+            warps.push_back(temp);
+            
+            //Set up Scaled projectors
+            Projector * tempScaledProjector  = new Projector();
+            tempScaledProjector->setup(scaledProjectors.size(), //int order
+                                       1); //int numwarps
+            scaledProjectors.push_back(tempScaledProjector);
+        }
+        
+    }
+    
+    caclulateProjectorAttributes();
+    calculateWarpAttributes();
+}
+
+
+
+
+void CroppingManager::addCrop(ofVec2f size)
+{
+    int numCrops = warps.size();
+    
+    WarpVisual *temp  = new WarpVisual();
+    temp->setup(ofVec2f(0.0f, 0.0f), ofVec2f(0.0f, 0.0f), numCrops);
+    temp->setCanvasReference(canvasRef);
+    addChild(temp);
+    temp->setVisible(true);
+    warps.push_back(temp);
+    
+    //Create a global crop object
+    CropInfo data;
+    data.size.set(size.x, size.y);
+    data.pos.set(0.0f, 0.0f);
+    data.index = numCrops;
+    cropData.push_back(data);
+    
+    //Set up Scaled projectors
+    Projector * tempScaledProjector  = new Projector();
+    tempScaledProjector->setup(scaledProjectors.size(), //int order
+                               1); //int numwarps
+    scaledProjectors.push_back(tempScaledProjector);
+    
+    caclulateProjectorAttributes();
+    
+    calculateWarpAttributes();
+}
+
+void CroppingManager::removeCrop()
+{
+    
 }
 
 #pragma mark UTILS

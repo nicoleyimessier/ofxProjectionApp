@@ -59,8 +59,13 @@ public:
 	/*
 	Warping
 	*/
-	void toggleEditingWarpsOff(); 
-
+	void toggleEditingWarpsOff();
+    
+    //Add warp to the warp controller on the fly and cascade change to other classes
+    void addWarp(ofxWarp::WarpBase::Type type, ofVec2f size, ofVec2f pos);
+    
+    //Remove warp to the warp controller on the fly and cascade change to other classes
+    void removeWarp(ofxWarp::WarpBase::Type type);
 
 protected:
     /*
@@ -69,6 +74,10 @@ protected:
     ofxWarpController *warpController;
     bool loadFromFile = false;
     string directoryPath = "";
+    
+    //WARP TYPE
+    //NEED TO DO: Make this configurable enum
+    bool perspective = true;
     
     enum ControlPoints
     {
@@ -155,9 +164,8 @@ protected:
      */
     
     MainGUI * guiMan;
-    
     ofxInterface::Node* sceneRef;
     
-    bool perspective = true;
+
 };
 

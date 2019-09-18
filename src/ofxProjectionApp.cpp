@@ -67,8 +67,7 @@ void ofxProjectionApp::setupWarps()
                 {
                     warp = warpController->buildWarp<ofxWarpPerspectiveBilinear>();
                     
-                    warp->setSize(ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps,
-                                  ProjectorManager::one().projectors[i]->size.y);
+                    warp->setSize(ProjectorManager::one().projectors[i]->size.x/ProjectorManager::one().projectors[i]->numWarps, ProjectorManager::one().projectors[i]->size.y);
                     
                     //Edges are the alphas?
                     warp->setEdges(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
@@ -104,12 +103,6 @@ void ofxProjectionApp::setupWarps()
 					warp->setControlPoint(ControlPoints::BOTTOM_LEFT, br);
 					warp->setControlPoint(ControlPoints::BOTTOM_RIGHT, tr);
 
-					/*
-                    warp->setControlPoint(ControlPoints::TOP_LEFT, bl );
-                    warp->setControlPoint(ControlPoints::TOP_RIGHT, tl );
-                    warp->setControlPoint(ControlPoints::BOTTOM_LEFT,  tr );
-                    warp->setControlPoint(ControlPoints::BOTTOM_RIGHT, br );
-                    */
 
                     ofLogNotice("ofxProjectionApp") << "warpNum-#" << warpController->getNumWarps() << "-xPos_l, xPos_r: " << xPos_l << " ," << xPos_r;
                 }
@@ -176,9 +169,8 @@ void ofxProjectionApp::setupWarps()
         //Set up cropPath
         cropPath = ofFilePath::join(directoryPath, cropCropFileName);
 
-        //loadNewSettings();
-        
 		loadWarpSettings();
+        
 		setupCroppingManager();
 		loadCropSettings();
     }
@@ -546,7 +538,7 @@ void ofxProjectionApp::loadWarpSettings()
 	}
 
 	edgeGuis.clear();
-
+    
 	for (int i = 0; i < numWarps; i++)
 	{
 		auto warp = warpController->getWarp(i);
@@ -564,8 +556,30 @@ void ofxProjectionApp::loadWarpSettings()
 		temp->setExponent(exp);
 
 		edgeGuis.push_back(temp);
+        
+        // Update Projector Manager
+        if(numWarps > ProjectorManager::one().numWarps)
+        {
+            //Update projector manager
+            ProjectorManager::one().addProjector(ProjectorManager::one().projectors.size(),
+                                                 1,
+                                                 warp->getSize());
+        }
 
-	}
+    }
+    
+    //Update data in projector manager
+    int warpCounter = 0 ;
+    for(int i = 0; i < ProjectorManager::one().projectors.size(); i++)
+    {
+        for(int j = 0; j < ProjectorManager::one().projectors[i]->numWarps; j++)
+        {
+            auto warp = warpController->getWarp(warpCounter);
+            ProjectorManager::one().projectors[i]->size = warp->getSize();
+            warpCounter++;
+        }
+    }
+    
 }
 
 void ofxProjectionApp::loadCropSettings()
@@ -606,7 +620,8 @@ void ofxProjectionApp::loadCropSettings()
 				cropMan->updateCropData(temp, i);
 
 			}
-
+            
+            cropMan->resizeWarpsBasedOffCropData();
 
 		}
 		catch (exception exc)
@@ -635,8 +650,9 @@ void ofxProjectionApp::loadNewSettings()
 	loadWarpSettings();
 	
     loadCropSettings();
-   
-    //ofToggleFullscreen();
+    
+    
+  
 }
 
 #pragma mark WARPS
@@ -644,4 +660,72 @@ void ofxProjectionApp::loadNewSettings()
 void ofxProjectionApp::toggleEditingWarpsOff()
 {
 	warpController->turnEditingOff(); 
+}
+
+//Add warp to the warp controller on the fly and cascade change to other classes
+void ofxProjectionApp::addWarp(ofxWarp::WarpBase::Type type, ofVec2f size, ofVec2f pos)
+{
+    std:shared_ptr<ofxWarpBase> warp;
+    
+    switch (type)
+    {
+        case ofxWarp::WarpBase::TYPE_BILINEAR:
+        {
+            warp = warpController->buildWarp<ofxWarpBilinear>();
+            break;
+        }
+        case ofxWarp::WarpBase::TYPE_PERSPECTIVE:
+        {
+            warp = warpController->buildWarp<ofxWarpPerspective>();
+            break;
+        }
+        case ofxWarp::WarpBase::TYPE_PERSPECTIVE_BILINEAR:
+        {
+            warp = warpController->buildWarp<ofxWarpPerspectiveBilinear>();
+            break;
+        }
+        default: break;
+    }
+    
+    warp->setSize(size);
+    warp->setEdges(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+    warp->setGamma(glm::vec3(100.0f, 100.0f, 100.0f));
+    
+    /*
+     Make sure all values are normalized (i.e 0 to 1) and not the actualy pixel height and pixel width.
+     */
+    // Top left control point
+    
+    
+    float xPos_l = pos.x / ofGetWidth();
+    float xPos_r = pos.x / ofGetHeight();
+    
+    
+    glm::vec2 tl = glm::vec2(xPos_l, 0.0f);
+    glm::vec2 tr = glm::vec2(xPos_l, size.y / ofGetHeight());
+    glm::vec2 bl = glm::vec2(xPos_r, 0.0f);
+    glm::vec2 br = glm::vec2(xPos_r, size.y / ofGetHeight());
+    
+    warp->setControlPoint(ControlPoints::TOP_LEFT, tl);
+    warp->setControlPoint(ControlPoints::TOP_RIGHT, bl);
+    warp->setControlPoint(ControlPoints::BOTTOM_LEFT, br);
+    warp->setControlPoint(ControlPoints::BOTTOM_RIGHT, tr);
+    
+    ofLogNotice("ofxProjectionApp::addWarp") << "warpNum-#" << warpController->getNumWarps() << "-xPos_l, xPos_r: " << xPos_l << " ," << xPos_r;
+    
+    //Update projector manager
+    ProjectorManager::one().addProjector(ProjectorManager::one().projectors.size(),
+                                         1,
+                                         warp->getSize());
+    
+    //Update cropping manager
+    cropMan->addCrop(size);
+    
+    
+}
+
+//Remove warp to the warp controller on the fly and cascade change to other classes
+void ofxProjectionApp::removeWarp(ofxWarp::WarpBase::Type type)
+{
+    
 }

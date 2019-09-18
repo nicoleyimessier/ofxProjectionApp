@@ -63,6 +63,9 @@ public:
     
     vector<CropInfo> cropData;
     
+    void addCrop(ofVec2f size);
+    void removeCrop();
+    
 public:
     
     CropInfo getCropData(int cropIndex);
@@ -70,6 +73,8 @@ public:
     int getCropDataSize();
 	
 	void resizeCropDataVector(int cropSize); 
+    void resizeWarpsBasedOffCropData();
+   
     
 private:
     /*
