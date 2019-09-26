@@ -10,9 +10,13 @@ The intended process is to draw your app into an FBO that acts as your canvas, a
 
 * [ofxWarp](https://github.com/local-projects/ofxWarp): create editable linear, bi-linear, and perspective warps. Note this is using the local-projects fork of [prisonerjohn's addon](https://github.com/prisonerjohn/ofxWarp) and the [feature/multipleControls](https://github.com/local-projects/ofxWarp/tree/feature/multipleControls) branch. The feature/multipleControls branch is working for bi-linear warps, but the new features still need to be cascaded to to the linear and perspective warp classes. New features include: clicking control points to toggle active state instead of hovering, controling multiple control points at once
 * [ofxDatGui](https://github.com/local-projects/ofxDatGui): In application GUI 
-* [ofxJSON](https://github.com/local-projects/ofxJSON): configurable json files
 * [ofxNotificationCenter](https://github.com/local-projects/ofxNotificationCenter): addon to send and receive messages to a an application wide
 * Saves and loads projection settings dynamically
+
+##### Optional Addons
+
+- [ofxJSON](https://github.com/local-projects/ofxJSON): configurable json files
+  - By default, this addon uses OF's native json parser, *ofJson*. However, by defining the preprocessor macro `OFXPROJECTIONAPP_USE_OFXJSON`, ofxJson is used instead. (ofxJson allows for comments in json files, which ofJson does not currently allow).
 
 ## Compatibility
 * openFrameworks 0.9 and up
@@ -59,14 +63,14 @@ The intended workflow is to have a one to one setup of your intended system. Fro
 2.  A new GUI will pop up that may be too big to see, you can change the size of the GUI by adjusting the `CROPPING INTERFACE` slider. Below is an image of the GUI. 
 
  ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/CroppingState.png)
- 
+
  3. To edit a specific warp, click on the warp visual and it will highlight. 
  4. Once a warp is highlighted, use the GUI variables to edit the size and position of the crop. To adjust the size and position of the crop within the canvas, use the sliders in the main GUI labeled “CROP WIDTH”, “CROP HEIGHT”, “CROP XPOS”, and “CROP YPOS”. Note that the red rectangle represents the crop of the canvas that is drawn into the warp.
  5. To adjust the position of the crop within the warp, change the sliders corresponding to “X POS OF CROP IN WARP” and “Y POS OF CROP IN WARP”
 
 
  ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/CroppingState2.png)
- 
+
 
 ## Editing Warps
 
@@ -81,9 +85,9 @@ The intended workflow is to have a one to one setup of your intended system. Fro
 9. To unselect a control point, click on it while holding shift. 
 
  ![test](https://github.com/nicoleyimessier/ofxProjectionApp/blob/master/Documentation/SoftwareImages/ControlPoint.png)
- 
+
 ## Edge Blending
- 
+
 Each warp has its own edge blending panel. 
 
 To open the panel: 
@@ -119,7 +123,7 @@ To load old settings:
 
 
 ## Quick Setup Guide 
-	
+
 1. Set open gl version in `int(){}`. This needs to be OpenGL 3 and up.
 
 	```
@@ -145,7 +149,7 @@ To load old settings:
     canvas->begin();
     ofClear(0,0,0,0);
     canvas->end();
-	``` 
+	```
 4. Create your scene using `ofxInterface`.
 
 	```
@@ -155,7 +159,7 @@ To load old settings:
     scene->setPosition(0, 0);
     scene->setName("scene");
     scene->setEnabled(true);
-	``` 
+	```
 	
 5. Create an `ofxProjectionApp` object which is essentialy going to be the projection manager.
 
@@ -199,7 +203,7 @@ To load old settings:
     }
     
     projections->setupGuiManager(appStates);
-    ```
+   ```
 9.  Set up warps for `ofxProjectionApp`
 	
 	```
@@ -221,7 +225,7 @@ To load old settings:
     scene->updateSubtree(1./60.);
     
     projections->update();
-	```	 
+	```
 13.  Draw your content in canvas
 	
 	```
