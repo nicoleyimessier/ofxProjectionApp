@@ -360,6 +360,8 @@ void ofxProjectionApp::setupCropJsonData()
     
     for(int i = 0; i < cropMan->getCropDataSize(); i++)
     {
+
+#ifdef OFXPROJECTIONAPP_USE_OFXJSON
         ofxJSONElement data;
         data["warpID"] = ofxJSONElement();
         data["width"] = ofxJSONElement();
@@ -368,6 +370,16 @@ void ofxProjectionApp::setupCropJsonData()
         data["yPos"] = ofxJSONElement();
         
         cropData.append(data);
+#else
+		ofJson js;
+		js["warpID"] = 0;
+		js["width"] = 0.0f;
+		js["height"] = 0.0f;
+		js["xPos"] = 0.0f;
+		js["yPos"] = 0.0f;
+
+		cropData.push_back(js);
+#endif
     }
     
 }
@@ -376,11 +388,19 @@ void ofxProjectionApp::clearCropJsonData()
 {
     for(int i = 0; i < cropMan->getCropDataSize(); i++)
     {
+#ifdef OFXPROJECTIONAPP_USE_OFXJSON
         cropData[i]["warpID"] = "";
         cropData[i]["width"] = "";
         cropData[i]["height"] = "";
         cropData[i]["xPos"] = "";
         cropData[i]["yPos"] = "";
+#else
+		cropData[i]["warpID"] = 0;
+		cropData[i]["width"] = 0.0f;
+		cropData[i]["height"] = 0.0f;
+		cropData[i]["xPos"] = 0.0f;
+		cropData[i]["yPos"] = 0.0f;
+#endif
     }
 }
 
@@ -388,6 +408,9 @@ void ofxProjectionApp::saveCropJsonData(string fileName)
 {
     
     //NEED TO DO:
+
+#ifdef OFXPROJECTIONAPP_USE_OFXJSON
+
     for(int i = 0; i < cropMan->getCropDataSize(); i++)
     {
         cropData[i]["warpID"] = cropMan->getCropData(i).index;
@@ -402,6 +425,29 @@ void ofxProjectionApp::saveCropJsonData(string fileName)
     ofLogNotice() << "Saving " << cropData.getRawString();
     
     cropData.save(fileName, true);
+
+#else
+
+	for (int i = 0; i < cropMan->getCropDataSize(); i++)
+	{
+		cropData[i]["warpID"] = cropMan->getCropData(i).index;
+		cropData[i]["width"] = cropMan->getCropData(i).size.x;
+		cropData[i]["height"] = cropMan->getCropData(i).size.y;
+		cropData[i]["xPos"] = cropMan->getCropData(i).pos.x;
+		cropData[i]["yPos"] = cropMan->getCropData(i).pos.y;
+		cropData[i]["drawPosX"] = cropMan->getCropData(i).drawPos.x;
+		cropData[i]["drawPosY"] = cropMan->getCropData(i).drawPos.y;
+	}
+
+	ofJson out = cropData;
+
+	string ss = "";
+	for (int i = 0; i < cropData.size(); i++) ss += cropData[i].dump(1) + "\n";
+	ofLogNotice() << "Saving crop data" << ss;
+
+	ofSaveJson(ofToDataPath(fileName), out);
+
+#endif
     
     
 }
@@ -584,25 +630,22 @@ void ofxProjectionApp::loadWarpSettings()
 
 void ofxProjectionApp::loadCropSettings()
 {
-
 	ofLogNotice("ofxProjectionApp::loadCropSettings") << "Loading crop settings: " << cropPath;
+
+#ifdef OFXPROJECTIONAPP_USE_OFXJSON
 
 	ofxJSONElement newCropData;
 	bool parseNewCropData = newCropData.open(cropPath);
-
 
 	if (parseNewCropData)
 	{
 		try
 		{
-
 			//Resize crop data
 			cropMan->resizeCropDataVector(newCropData.size());
 
 			for (int i = 0; i < newCropData.size(); i++)
 			{
-
-
 				CroppingManager::CropInfo temp;
 
 				temp.index = newCropData[i]["warpID"].asInt();
@@ -618,11 +661,8 @@ void ofxProjectionApp::loadCropSettings()
                 }
                 
 				cropMan->updateCropData(temp, i);
-
 			}
-            
             cropMan->resizeWarpsBasedOffCropData();
-
 		}
 		catch (exception exc)
 		{
@@ -632,16 +672,65 @@ void ofxProjectionApp::loadCropSettings()
 		//! Notify CropManager & GUIManager to update the interfaces
 		ofxNotificationCenter::Notification mnd;
 		mnd.ID = IDManager::one().updateCropInterface_id;
-
 		ofxNotificationCenter::one().postNotification(IDManager::one().updateCropInterface_id, mnd);
-
 	}
 	else
 	{
 		ofLogError("ofxProjectionApp::loadNewSettings") << "Unable to parse " << cropPath;
 	}
-}
 
+#else
+
+	ofJson newCropData;
+	ofFile file;
+	bool bFileLoaded = file.open(ofToDataPath(cropPath));
+
+	if (bFileLoaded)
+	{
+		try
+		{
+			// Load the json
+			file >> newCropData;
+
+			//Resize crop data
+			cropMan->resizeCropDataVector(newCropData.size());
+
+			for (int i = 0; i < newCropData.size(); i++)
+			{
+				CroppingManager::CropInfo temp;
+
+				temp.index = newCropData[i]["warpID"];
+				temp.size.x = newCropData[i]["width"];
+				temp.size.y = newCropData[i]["height"];
+				temp.pos.x = newCropData[i]["xPos"];
+				temp.pos.y = newCropData[i]["yPos"];
+
+				if (newCropData[i].find("drawPosX") != newCropData[i].end())
+				{
+					temp.drawPos.x = newCropData[i]["drawPosX"];
+					temp.drawPos.y = newCropData[i]["drawPosY"];
+				}
+
+				cropMan->updateCropData(temp, i);
+			}
+		}
+		catch (exception exc)
+		{
+			ofLogError("ofxProjectionApp::loadNewSettings") << exc.what() << " While parsing " << newCropData.dump(1);
+		}
+
+		//! Notify CropManager & GUIManager to update the interfaces
+		ofxNotificationCenter::Notification mnd;
+		mnd.ID = IDManager::one().updateCropInterface_id;
+		ofxNotificationCenter::one().postNotification(IDManager::one().updateCropInterface_id, mnd);
+	}
+	else
+	{
+		ofLogError("ofxProjectionApp::loadNewSettings") << "Unable to parse " << cropPath;
+	}
+
+#endif
+}
 
 void ofxProjectionApp::loadNewSettings()
 {
@@ -650,9 +739,6 @@ void ofxProjectionApp::loadNewSettings()
 	loadWarpSettings();
 	
     loadCropSettings();
-    
-    
-  
 }
 
 #pragma mark WARPS

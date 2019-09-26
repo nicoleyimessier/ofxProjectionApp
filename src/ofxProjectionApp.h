@@ -6,17 +6,25 @@
 //
 //
 
+// By default, this addon uses the native Openframeworks json
+// parser, ofJson. However, if you would like to use the addon
+// ofxJson (for its ability to load commented Json files),
+// then you must define the preprocessor macro 
+// OFXPROJECTIONAPP_USE_OFXJSON by uncommenting the line below
+//#define OFXPROJECTIONAPP_USE_OFXJSON
+
 #pragma once
 #include "ofMain.h"
 #include "ofxWarp.h"
 #include "ofxNotificationCenter.h"
-#include "ofxJson.h"
 #include "ofxInterface.h"
 #include "EdgeBlend.h"
-#include "ofxJson.h"
 #include "CroppingManager.h"
 #include "ProjectorManager.h"
 #include "MainGUI.h"
+#ifdef OFXPROJECTIONAPP_USE_OFXJSON
+#include "ofxJson.h"
+#endif
 
 class ofxProjectionApp
 {
@@ -125,7 +133,11 @@ protected:
     /*
      Crop Data
      */
-    ofxJSONElement cropData;
+#ifdef OFXPROJECTIONAPP_USE_OFXJSON
+	ofxJSONElement cropData;
+#else 
+	ofJson cropData;
+#endif
     void setupCropJsonData();
     void clearCropJsonData();
     void saveCropJsonData(string fileName);
